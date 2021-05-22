@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biological Networks and DL &#8212; Inference for Gene Regulartory Networks</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gene Regulatory Networks" href="grn.html" />
+    <link rel="prev" title="Paper Summary" href="papers.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Inference for Gene Regulartory Networks</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Inference for Gene Regulartory Networks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="papers.html">
+   Paper Summary
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Biological Networks and DL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="grn.html">
+     Gene Regulatory Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="grn-ssu.html">
+     Sup, semi-sup, unsup inference of GRN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="grgnn.html">
+     GRGNN
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/summary/bio-net-dl.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#biological-networks">
+   Biological Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#protein-protein-interaction-networks-ppi">
+     Protein-Protein Interaction Networks (PPI)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gene-regulatory-networks">
+     Gene Regulatory Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metabolic-networks">
+     Metabolic Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#drug-drug-interaction-networks-ddi">
+     Drug-Drug Interaction Networks (DDI)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gnns">
+   GNNs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-in-biology">
+   Application in Biology
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#proteomics">
+     Proteomics
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#protein-protein-interaction-prediction">
+       Protein-Protein Interaction Prediction
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#protein-function-prediction">
+     Protein Function Prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gene-regulatory-network">
+     Gene Regulatory Network
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference-of-interest">
+   Reference of interest
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="biological-networks-and-dl">
+<h1>Biological Networks and DL<a class="headerlink" href="#biological-networks-and-dl" title="Permalink to this headline">¶</a></h1>
+<p><span class="xref myst">pdf</span></p>
+<p>Goal</p>
+<ul class="simple">
+<li><p>describe biological networks and review the principles and underlying algorithms of GNNs.</p></li>
+<li><p>discuss domains in bioinformatics in which graph neural networks are frequently being applied at the moment, such as</p>
+<ul>
+<li><p>protein function prediction,</p></li>
+<li><p>protein–protein interaction prediction,</p></li>
+<li><p>in silico drug discovery and development.</p></li>
+</ul>
+</li>
+<li><p>highlight application areas such as gene regulatory networks and disease diagnosis where deep learning is emerging as a new tool to answer classic questions like gene interaction prediction and automatic disease
+prediction from data.</p></li>
+</ul>
+<p>Trend</p>
+<ul class="simple">
+<li><p>experimental high-throughput technologies have expanded the availability and quantity of molecular data in biology</p></li>
+<li><p>computing technology</p></li>
+</ul>
+<p>DL result</p>
+<ul class="simple">
+<li><p>The early examples of applying deep learning to biological network data, detailed in this paper, have consistently reported comparable or better results than the existing classical machine learning methods.</p></li>
+</ul>
+<div class="section" id="biological-networks">
+<h2>Biological Networks<a class="headerlink" href="#biological-networks" title="Permalink to this headline">¶</a></h2>
+<p>necessity</p>
+<ul class="simple">
+<li><p>DNA, RNA, proteins, and metabolites have crucial roles in the molecular mechanism of the cellular processes underlying life</p></li>
+<li><p>Stying their <strong>structure</strong> and <strong>interaction</strong> is fundamental for</p>
+<ul>
+<li><p>development of new druges</p></li>
+<li><p>discovery of disease pathways</p></li>
+</ul>
+</li>
+</ul>
+<p>It is possible to define biological networks at different levels of detail.</p>
+<div class="section" id="protein-protein-interaction-networks-ppi">
+<h3>Protein-Protein Interaction Networks (PPI)<a class="headerlink" href="#protein-protein-interaction-networks-ppi" title="Permalink to this headline">¶</a></h3>
+<p>structure</p>
+<ul class="simple">
+<li><p>node: proteins</p></li>
+<li><p>edge: interaction among proteins</p>
+<ul>
+<li><p>type of edges/interaction: phosphorylation, or bond</p></li>
+</ul>
+</li>
+</ul>
+<p>Tasks</p>
+<ul class="simple">
+<li><p>node classification: predicting the unknown function of a protein based on the functions of its neighbors in a PPI network.</p></li>
+</ul>
+</div>
+<div class="section" id="gene-regulatory-networks">
+<h3>Gene Regulatory Networks<a class="headerlink" href="#gene-regulatory-networks" title="Permalink to this headline">¶</a></h3>
+<p>Definitions</p>
+<ul class="simple">
+<li><p>gene expression: the set of processes which leads to generating proteins from the DNA sequence</p></li>
+</ul>
+<p>Regulation mechanisms occur at different stages of protein production from DNA (transcription, translation, splicing phases.)</p>
+<p>Structure</p>
+<ul class="simple">
+<li><p>node represents a gene</p></li>
+<li><p>a directed link among two genes implies that one gene directly regulates the expression of the other without mediation from other genes</p></li>
+</ul>
+<p>Qs: multiple to one? one to multiple? multiple to multiple??</p>
+<p>Tasks</p>
+<ul class="simple">
+<li><p>link prediction: which genes regulate the expression of another?</p></li>
+</ul>
+</div>
+<div class="section" id="metabolic-networks">
+<h3>Metabolic Networks<a class="headerlink" href="#metabolic-networks" title="Permalink to this headline">¶</a></h3>
+<p>Definitions</p>
+<ul class="simple">
+<li><p>metabolites: intermediate and final products of metabolic reactions</p></li>
+<li><p>metabolic pathways: series of chemical reactions related to perform a specific metabolic function</p></li>
+</ul>
+<p>Structure</p>
+<ul class="simple">
+<li><p>node: metabolite</p></li>
+<li><p>directed edge: reaction, labeled with the enzyme acting as the catalyst</p></li>
+</ul>
+</div>
+<div class="section" id="drug-drug-interaction-networks-ddi">
+<h3>Drug-Drug Interaction Networks (DDI)<a class="headerlink" href="#drug-drug-interaction-networks-ddi" title="Permalink to this headline">¶</a></h3>
+<p>Model the interactions among different drugs.</p>
+<p>Structure</p>
+<ul class="simple">
+<li><p>node: drug</p></li>
+<li><p>edge: interactions</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="gnns">
+<h2>GNNs<a class="headerlink" href="#gnns" title="Permalink to this headline">¶</a></h2>
+<p>Overview from embeddings to GNN</p>
+<ul class="simple">
+<li><p>recurrent GNNs [84, 85]</p>
+<ul>
+<li><p>Gated graph sequence neural networks. ICLR 2016</p></li>
+<li><p>The graph neural network mode. IEEE 2009</p></li>
+</ul>
+</li>
+<li><p>spatial-temporal GNNs [86, 87]</p>
+<ul>
+<li><p>Deep leaning on spatio-temporal graphs. CVPR 2016</p></li>
+<li><p>Diffusion convolutional recurrent neural network: Data-driven traffic forecasting. ICLR 2018</p></li>
+</ul>
+</li>
+<li><p>graph embeddings: closely related to GNNs (building blocks), but are not always considered a subset of GNNs.</p>
+<ul>
+<li><p>Hamilton W, Ying R, Leskovec J. Representation learning on graphs: Methods and applications. IEEE Data Eng Bull, 2017.</p></li>
+<li><p>Cui P, Wang X, Pei J, et al. A survey on network embedding. IEEE Trans Knowl Data Eng 2019;31:833–52.</p></li>
+<li><p>Cai H, Zheng VW, Chang KC. A comprehensive survey of graph embedding: Problems, techniques, and applications. IEEE Trans Knowl Data Eng 2018;30(9):1616–37.</p></li>
+</ul>
+</li>
+<li><p>graph GCNs: building blocks of many other GNN architectures</p></li>
+</ul>
+<p>Development</p>
+<ul class="simple">
+<li><p>Spectral methods, first introduced by Bruna et al. [93] and later Defferrard et al. [94], build a convolution by creating a <strong>spectral filter</strong> defined in the Fourier domain using the graph Laplacian.</p>
+<ul>
+<li><p>However, due to the computational complexity of the eigendecomposition of the graph Laplacian necessary for spectral methods, many more methods have been developed using <strong>spatial methods</strong>, where the idea is to learn an embedding for each node by aggregating its neighborhood in each successive layer in the network</p></li>
+</ul>
+</li>
+<li><p>Spatial methods</p>
+<ul>
+<li><p>Duvenaud [95], providing a permutation-invariant convolution that operates over all nodes in the graph</p></li>
+<li><p>Kipf and Welling GCNs: bridge the gap between spatial and spectral methods by showing a spectral motivation for their spatial approach.</p>
+<ul>
+<li><p>Though this approach was originally proposed as a way to perform node classification via semi-supervised learning, it can be easily generalized to classify higher-order structures in the graph, edge level outcomes, or the graph itself.</p></li>
+</ul>
+</li>
+<li><p>Hamilton+ GraphSAGE: generalizable and computationally efficient approach</p>
+<ul>
+<li><p>sampling neighbors</p></li>
+<li><p>learning an aggregation function</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Niepert et al. [30] solve the node correspondence problem by imposing an ordering upon the graph, and in doing so opens the door to utilize a more traditional CNN structure.</p></li>
+</ul>
+<p>Relation to</p>
+<ul class="simple">
+<li><p>message passing: Gilmer et al. [36]</p></li>
+<li><p>WL kernel: The adaptations in GCNs can therefore be seen as a differentiable and continuous extension of the Weisfeiler–Lehman algorithm and kernel</p></li>
+</ul>
+</div>
+<div class="section" id="application-in-biology">
+<h2>Application in Biology<a class="headerlink" href="#application-in-biology" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="proteomics">
+<h3>Proteomics<a class="headerlink" href="#proteomics" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="protein-protein-interaction-prediction">
+<h4>Protein-Protein Interaction Prediction<a class="headerlink" href="#protein-protein-interaction-prediction" title="Permalink to this headline">¶</a></h4>
+<p>Traditionally, many methods use the primary structure of amino acid sequences in order to vectorize a protein and perform classification. However, the recent methods that leverage the graph structure have shown stronger performance compared to merely using the sequence information.</p>
+<ul class="simple">
+<li><p>Yue [41]: network embedding + DL</p></li>
+<li><p>Liu [60]: GCN</p></li>
+<li><p>DeepPPI[59]: used deep learning on a vector summary of the protein sequences to predict links. outperform classical methods.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="protein-function-prediction">
+<h3>Protein Function Prediction<a class="headerlink" href="#protein-function-prediction" title="Permalink to this headline">¶</a></h3>
+<p>Motivation</p>
+<ul class="simple">
+<li><p>manual assessment of the large amounts of data resulting from high-throughput experiments is rather slow and costly</p></li>
+</ul>
+<p>Can be formulated as node classification task or a graph classification task.</p>
+<p>Gligorijevic et al. [71] consider the idea of representing PPI networks using <strong>multiple</strong> representations of the same network. Each network contains different information, but uses the same set of nodes. They create a vector representation of each node using Random Walk with Restarts from Cao et al. [101] to then construct a positive point-wise mutual information matrix for each of the adjacency matrices, which is used as the input to a multimodal deep autoencoder.</p>
+<p>Zeng et al. [56] seek to identify essential proteins from a PPI network. They learn a dense vector representation of each node using node2vec [54], and combine that with a representation learned from gene expression profiles using a RNN (!!). This is then passed through a regular fully connected network, in order to classify each node as an essential or non-essential protein.</p>
+</div>
+<div class="section" id="gene-regulatory-network">
+<h3>Gene Regulatory Network<a class="headerlink" href="#gene-regulatory-network" title="Permalink to this headline">¶</a></h3>
+<p>Dataset limitation</p>
+<ul class="simple">
+<li><p>curated GRN datasets are not yet available or are difficult to obtain for a large number of organisms [49, 121]</p></li>
+<li><p>gene expression data are intrinsically noisy [122] and therefore not ideal for training models.</p></li>
+</ul>
+<p>For this reason, GRNs are mostly analyzed with unsupervised methods [121], since supervised techniques, and deep learning in particular, require a large number of well annotated samples in order to be effective.</p>
+<p>However, some deep learning models, specifically RNNs, report promising results, although they do not use any kind of graph information to perform the task. One example is the work in [122], which enhances the training quality by introducing a non-linear Kalman filter, which deals very effectively with the noise in the data</p>
+<p>Turki et al. [49] present an example of graph-based deep learning approaches. The authors use an unsupervised method to obtain a preliminary version of the GRN from gene expression time series data, which is <strong>denoised</strong> through a cleaning algorithm, and then used to train diverse supervised methods to perform link prediction among gene pairs.</p>
+<ul class="simple">
+<li><p>The proposed data cleaning algorithm is of crucial importance and could positively impact the field of GRN analyses since it increases the quality of the GRN data. More in detail, the denoised features are obtained by projecting the original features onto the eigenvectors of the distance matrix of the feature vectors calculated using the Laplacian kernel function. The supervised methods Turki et al. use after cleaning the GRN includes SVMs and deep learning approaches, such as a DNN and a deep belief network. The latter two outperform the unsupervised state-of-the-art baseline, although failed to outperform the linear SVM-based approach.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="reference-of-interest">
+<h2>Reference of interest<a class="headerlink" href="#reference-of-interest" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>49: Turki T,Wang JTL, Rajikhan I. Inferring gene regulatory networks by combining supervised and unsupervised methods. In: Proceedings of the 15th IEEE International Conference on Machine Learning and Applications (ICMLA), 2016, pp. 140–5</p></li>
+<li><p>121: Maetschke SR, Madhamshettiwar PB, Davis MJ, et al. Supervised, semi-supervised and unsupervised inference of gene regulatory networks. Bioinformatics 2013;15(2):192–211.</p></li>
+<li><p>122: Raza K, Alam M. Recurrent neural network based hybrid model for reconstructing gene regulatory network. Comput Biol Chem 2016;64:322–34.</p></li>
+</ul>
+<p>Takeaway for writing</p>
+<ul class="simple">
+<li><p>graph notation</p></li>
+<li><p>graph embedding</p></li>
+<li><p>development of GNNs</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./summary"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="papers.html" title="previous page">Paper Summary</a>
+    <a class='right-next' id="next-link" href="grn.html" title="next page">Gene Regulatory Networks</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dennis Zheng<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

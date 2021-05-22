@@ -1,0 +1,9 @@
+
+- file: index
+
+- file: summary/papers
+  sections:
+    - file: summary/bio-net-dl
+    - file: summary/grn
+    - file: summary/grn-ssu
+    - file: summary/grgnn

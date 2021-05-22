@@ -1,0 +1,616 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sup, semi-sup, unsup inference of GRN &#8212; Inference for Gene Regulartory Networks</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GRGNN" href="grgnn.html" />
+    <link rel="prev" title="Gene Regulatory Networks" href="grn.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Inference for Gene Regulartory Networks</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Inference for Gene Regulartory Networks
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="papers.html">
+   Paper Summary
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="bio-net-dl.html">
+     Biological Networks and DL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="grn.html">
+     Gene Regulatory Networks
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Sup, semi-sup, unsup inference of GRN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="grgnn.html">
+     GRGNN
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/summary/grn-ssu.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised">
+   Unsupervised
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#supervised">
+   Supervised
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#semi-supervised">
+   Semi-supervised
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#experiments-and-results">
+   Experiments and Results
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Unsupervised
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-and-semisupervised">
+     Supervised and semisupervised
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#real-data">
+   Real data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitation">
+   Limitation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ref-of-interest">
+   Ref of interest
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="sup-semi-sup-unsup-inference-of-grn">
+<h1>Sup, semi-sup, unsup inference of GRN<a class="headerlink" href="#sup-semi-sup-unsup-inference-of-grn" title="Permalink to this headline">¶</a></h1>
+<p><span class="xref myst">pdf</span> Maetschke, 2013
+<span class="xref myst">link1</span>, <span class="xref myst">link2</span></p>
+<p>Evaluate ssu methods on simulated and experimental expression data.</p>
+<p>Results:</p>
+<ul class="simple">
+<li><p>low prediction accuracies for unsupervised methods</p>
+<ul>
+<li><p>except for Z-Score method on knockout data</p></li>
+</ul>
+</li>
+<li><p>sup approach achieves highest accuracies</p></li>
+<li><p>semi-sup with small numbers of only positive samples, outperform unsup techniques.</p></li>
+</ul>
+<p>Problem</p>
+<ul class="simple">
+<li><p>experimental methods for GRN inference are time-consuming, expensive and require antibodies for each TF [2].</p></li>
+</ul>
+<p>gene data types</p>
+<ul class="simple">
+<li><p>knockout, knockdown and multifactorial, microarray (??)</p></li>
+</ul>
+<p>dataset</p>
+<ul class="simple">
+<li><p>Dialogue for Reverse Engineering Assessments and Methods (DREAM), an annual open competition in network inference</p></li>
+</ul>
+<p>simulation</p>
+<ul class="simple">
+<li><p>To avoid discrepancies between the gene expression values generated by true regulatory networks
+and the actually known, partial networks, we performed evaluations on simulated, steady-state expression data.</p></li>
+<li><p>This allowed us to assess the accuracy of an algorithm against a perfectly known true network [21]</p></li>
+<li><p>use GeneNetWeaver [12, 24] and SynTReN [25] simulators</p></li>
+<li><p>GeneNetWeaver (#exp=#genes)</p>
+<ul>
+<li><p>extract <strong>subnetworks</strong> from known interaction networks (E. coli and S cerevisiae networks)</p></li>
+<li><p>simulate transcription and translation</p></li>
+<li><p>uses a set of ordinary differential equations describing chemical kinetics to generate expression data for experiments</p>
+<ul>
+<li><p>knockout: expression value of each gene is set to 0 in turn (hence #exp = #genes)</p></li>
+<li><p>knockdown: halved</p></li>
+<li><p>multifactorial: expression levels of a small number of genes are perturbed by a small random amount.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>SynTReN: similar but older simulator, faster than Gene NetWeaver, allows one to vary the sample number independently of the network size.</p>
+<ul>
+<li><p>extract E coli and S cerevisiae</p></li>
+<li><p>simulate transcription only</p></li>
+<li><p>simulate multifactorial only</p></li>
+</ul>
+</li>
+</ul>
+<p>Note</p>
+<ul class="simple">
+<li><p>Because many methods are not designed to infer self-interactions or interaction direction, we disregard directed edges and self-interactions.</p></li>
+</ul>
+<div class="section" id="unsupervised">
+<h2>Unsupervised<a class="headerlink" href="#unsupervised" title="Permalink to this headline">¶</a></h2>
+<p>unsup rely on gene expression profiles data  only.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Formula</p></th>
+<th class="head"><p>Remark</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Correlation</p></td>
+<td><p>Pearson, Spearmane, Kendalls</p></td>
+<td><p>+tive: activating. -tive: inhibitory. Use absolute value since the evluation does not distinguish between inhibiting and activating</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPEARMAN-C</p></td>
+<td><p>$w_{i j}=\left</p></td>
+<td><p>\operatorname{corr}\left(X_{i}, X_{j}\right) \cdot \frac{1}{n} \sum_{k}^{n} \operatorname{corr}\left(X_{i}, X_{k}\right)\right</p></td>
+</tr>
+<tr class="row-even"><td><p>WGCNA [30] Weighted gene co-expression network analysis</p></td>
+<td><p>$w_{i j}=\left</p></td>
+<td><p>\operatorname{corr}\left(X_{i}, X_{j}\right)\right</p></td>
+</tr>
+<tr class="row-odd"><td><p>RN [31] relevance netwoks</p></td>
+<td><p>empirical mutual information</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>CLR [11] context likelihood of relatedness</p></td>
+<td><p><span class="math notranslate nohighlight">\(z_{i}=\max _{j}\left(0, \frac{I\left(X_{i}, X_{j}\right)-\mu_{i}}{\sigma_{i}}\right),\)</span> <span class="math notranslate nohighlight">\(w_{i j}=\sqrt{z_{i}^{2}+z_{j}^{2}}\)</span></p></td>
+<td><p>take backgounrd distribution into account, reduce the false prediction based on spurious correlations and indirect interactions.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ARACNE [13] accurate cellular networks</p></td>
+<td><p><span class="math notranslate nohighlight">\(I\left(X_{i}, X_{j}\right) \leq \min \left(I\left(X_{i}, X_{j}\right), I\left(X_{j}, X_{k}\right)\right)\)</span> pruned triplet if they violate the DPI beyond tolerance</p></td>
+<td><p>Better than RN BN. Applies Data processing inequality (DPI)</p></td>
+</tr>
+<tr class="row-even"><td><p>PCIT [29] practical correlation and information theory</p></td>
+<td><p><span class="math notranslate nohighlight">\(\text { corr }_{i j}^{\text {partial }}=\frac{\operatorname{corr}\left(X_{i}, X_{j}\right)-\operatorname{corr}\left(X_{i}, X_{k}\right) \operatorname{corr}\left(X_{j}, X_{k}\right)}{\sqrt{\left(1-\operatorname{cor}\left(X_{i}, X_{k}\right)\right)^{2}\left(1-\operatorname{corr}\left(X_{j}, X_{k}\right)\right)^{2}}}\)</span></p></td>
+<td><p>Similar to ARACNE, but uses  partial correlation instead of MI. Aims to eliminate the effect of the third gene k on the correlation of genes i and j.</p></td>
+</tr>
+<tr class="row-odd"><td><p>MRNET [14]</p></td>
+<td><p></p></td>
+<td><p>MI between expression profiles and a feature selection algorithm minimum-redundancy–maximum-relevance (MRMR)</p></td>
+</tr>
+<tr class="row-even"><td><p>MRNET-B</p></td>
+<td><p></p></td>
+<td><p>modification of MRNET. Replaces forward selection by backward selection.</p></td>
+</tr>
+<tr class="row-odd"><td><p>GENIE</p></td>
+<td><p></p></td>
+<td><p>Similar to MRNET, but random forests and extra-trees are used for regression and feature selection rather than MI and MRMR</p></td>
+</tr>
+<tr class="row-even"><td><p>SIGMOID</p></td>
+<td><p></p></td>
+<td><p>models the regulation of a gene by a linear combination with sigmoid function.</p></td>
+</tr>
+<tr class="row-odd"><td><p>MD [33] Mass-distance</p></td>
+<td><p><span class="math notranslate nohighlight">\(\operatorname{MASS}_{k}\left(X_{i}, X_{j}\right)=\sum_{\min \left(X_{i k}, X_{j k}\right) \leq x \leq \max \left(X_{i k}, X_{j k}\right)} f r e q(x)\)</span> <span class="math notranslate nohighlight">\(w_{ij} = \mathrm{MD}_{i j}:=\prod_{k}^{n} \operatorname{MASS}_{k}\left(X_{i}, X_{j}\right)\)</span></p></td>
+<td><p>It estimates the probability to observe a profile inside the volume delimited by the profiles. Smaller the volume, more similar are the two profiles</p></td>
+</tr>
+<tr class="row-even"><td><p>Mutual rank [34]</p></td>
+<td><p><span class="math notranslate nohighlight">\(\operatorname{rank}_{i j}=\operatorname{rank}_{j}\left(\operatorname{corr}\left(X_{i}, X_{k}\right), \forall k \neq i\right)\)</span>, <span class="math notranslate nohighlight">\(w_{i j}=\frac{\operatorname{rank}_{i j} \cdot \operatorname{rank}_{j i}}{2}\)</span></p></td>
+<td><p>ranked Pearson’s correlation</p></td>
+</tr>
+<tr class="row-odd"><td><p>MINE [28] Maximal information nonparametric exploration</p></td>
+<td><p><span class="math notranslate nohighlight">\(w_{i j}=\operatorname{MIC}\left(X_{i}, X_{j}\right)\)</span></p></td>
+<td><p>mutual information coefficient</p></td>
+</tr>
+<tr class="row-even"><td><p>EUCLID</p></td>
+<td><p><span class="math notranslate nohighlight">\(w_{ij} = \left\|X _i - X _j \right\|\)</span></p></td>
+<td><p>Euclidean distance</p></td>
+</tr>
+<tr class="row-odd"><td><p>Z-SCORE [7]</p></td>
+<td><p><span class="math notranslate nohighlight">\(z_{ij} = \frac{X_{jk} - \mu (X_j)}{\sigma (X_j)}\)</span>, <span class="math notranslate nohighlight">\(w_{ij} = \max (z_{ij}, z_{ji})\)</span></p></td>
+<td><p>Describes the effect of a knockout of gene <span class="math notranslate nohighlight">\(i\)</span> in the <span class="math notranslate nohighlight">\(k\)</span>-th experiment on gene <span class="math notranslate nohighlight">\(j\)</span>. (typo??) To generalize to other two types of experiment, replace <span class="math notranslate nohighlight">\(X_{jk}\)</span> by <span class="math notranslate nohighlight">\(\min (X_j)\)</span>, i.e. assuming that the minimum expression value within a profile indicates the knockout experiment (<span class="math notranslate nohighlight">\(z_{ij}\)</span> = constant for all <span class="math notranslate nohighlight">\(i\)</span> ??)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="supervised">
+<h2>Supervised<a class="headerlink" href="#supervised" title="Permalink to this headline">¶</a></h2>
+<p>sup: requires all edges are labeled (either positive or negative). Usually #positive &gt;&gt; #negative</p>
+<ul class="simple">
+<li><p>commonly used: SVM for inference of gene regulatory networks [9].</p></li>
+<li><p>implementation: SVMLight [35]</p></li>
+<li><p>feature vector: <span class="math notranslate nohighlight">\(\boldsymbol{x} = X_i X_j ^{\top}\)</span>, which is communicative (??)</p></li>
+<li><p>feature label: <span class="math notranslate nohighlight">\(\gamma = 1\)</span> for gene pairs that interact and <span class="math notranslate nohighlight">\(-1\)</span> otherwise</p></li>
+</ul>
+</div>
+<div class="section" id="semi-supervised">
+<h2>Semi-supervised<a class="headerlink" href="#semi-supervised" title="Permalink to this headline">¶</a></h2>
+<p>Data issue</p>
+<ul class="simple">
+<li><p>Data describing regulatory networks are sparse and typically only a small fraction of the true interactions is known.</p></li>
+<li><p>The situation is even worse for negative data (non-interactions) because experimental validation largely aims to detect but not exclude interactions.</p></li>
+<li><p>The case that all samples within a training data set can be labeled as positive or negative is therefore rarely given for practical network inference problems, and supervised methods are limited to small training data sets, which negatively affects their performance.</p></li>
+</ul>
+<p>pros</p>
+<ul class="simple">
+<li><p>semisup can be trained with much fewer labels (positive + negative, or positive only), but not as accurate predictors as sup</p></li>
+</ul>
+<p>Model [10]</p>
+<ul class="simple">
+<li><p>To enable the SVM training, which requires all samples to be labeled, all unlabeled samples within the semi-supervised training data are relabeled as <strong>negatives</strong>.</p></li>
+<li><p>This effect on model performance is investigated.</p></li>
+</ul>
+</div>
+<div class="section" id="experiments-and-results">
+<h2>Experiments and Results<a class="headerlink" href="#experiments-and-results" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Unsupervised<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>For a model, repeat 10 times:</p>
+<ul class="simple">
+<li><p>For <span class="math notranslate nohighlight">\(N_v= 10, 30, 50, 70, 90, 110\)</span></p>
+<ul>
+<li><p>extract <span class="math notranslate nohighlight">\(N_v\)</span> number of genes from E. Coli and (??) S. cerevisiae</p></li>
+<li><p>simulate expression data for three type of experiments. For each type,</p>
+<ul>
+<li><p>collect <span class="math notranslate nohighlight">\(N_v\)</span> number of samples</p></li>
+<li><p>compute AUC</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Findings</p>
+<ul class="simple">
+<li><p>large sd of AUC</p></li>
+<li><p>a simple Pearson’s correlation is consistently the second-best performer for all experimental types.</p></li>
+<li><p>ZSCORE was specifically designed for knockout data and indeed clearly outperforms all other methods for this experimental type.</p></li>
+<li><p>For small networks, the accuracy of a method can easily vary between no better than guessing to close to perfect</p></li>
+<li><p>some methods are sensitive to network size, some not (Fig 4)</p></li>
+<li><p>observe trend of improving accuracy with increasing number of samples and decreasing size of network, but absolute improvements with additional samples are small. most likely because unsupervised methods can infer only simple network topologies reliably and small sample sets are sufficient for this purpose</p></li>
+</ul>
+</div>
+<div class="section" id="supervised-and-semisupervised">
+<h3>Supervised and semisupervised<a class="headerlink" href="#supervised-and-semisupervised" title="Permalink to this headline">¶</a></h3>
+<p>vary:</p>
+<ul class="simple">
+<li><p>percentage of labeled data (10, 30, 50, 70, 90, 100% (sup))</p></li>
+<li><p>positive only, or both, in the lebeled data.</p></li>
+</ul>
+<p>results</p>
+<ul class="simple">
+<li><p>performance increases with the percentage of data labeled</p>
+<ul>
+<li><p>but there is little difference between labeling only positive data, and both positive and negative data</p></li>
+</ul>
+</li>
+<li><p>Even with as little as 10% of known interactions, semi-supervised methods still outperform unsupervised methods for multifactorial data.</p></li>
+<li><p>The Z-SCORE method is still the top-performing method on knockout data</p></li>
+<li><p>Knockout data are more informative for network inference than
+knockdown or multifactorial data.</p></li>
+</ul>
+<p>To summarize, apart from the Z-SCORE method on knockout data, supervised and semi-supervised approaches considerably outperform unsupervised methods and achieve good prediction accuracies in general for networks of this size.</p>
+</div>
+</div>
+<div class="section" id="real-data">
+<h2>Real data<a class="headerlink" href="#real-data" title="Permalink to this headline">¶</a></h2>
+<p>In addition to simulated data, we also evaluated all methods on two experimental data sets originating from the fifth DREAM systems biology challenge [8]. Specifically, we downloaded</p>
+<ul class="simple">
+<li><p>an E. coli network with 296 regulators, 4297 genes and the corresponding expression data with 487 samples, and</p></li>
+<li><p>an S. cerevisiae network with 183 regulators, 5667 genes and expression data with 321 samples.</p></li>
+</ul>
+<p>Both data sets are described in detail in the Supplementary Material of [8].</p>
+<p>We applied the same methodology and used GeneNetWeaver to randomly extract subnetworks with 30 nodes from the experimental networks.</p>
+<p>Findings</p>
+<ul class="simple">
+<li><p>The results on the experimental data are in good agreement with the simulation results</p></li>
+<li><p>The accuracy of the unsupervised methods remains low, while the supervised methods perform dramatically better.</p></li>
+</ul>
+</div>
+<div class="section" id="limitation">
+<h2>Limitation<a class="headerlink" href="#limitation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>only evaluate methods predicting undirected interaction (since most methods are these kind)</p>
+<ul>
+<li><p>only a small subset of methods can infer direction or loops natively (e.g. GENIE [27]).</p></li>
+</ul>
+</li>
+<li><p>only predict interaction/non-interaction, rather than type of interaction</p></li>
+<li><p>supervised method do not know which gene has been knocked out or knocked down (metadata), which is provided in DREAM challenge, since most methods do not use that.</p></li>
+<li><p>simulation method remain incomplete</p>
+<ul>
+<li><p>posttranscriptional regulation and chromatin states are missing,</p></li>
+<li><p>an evaluation of inference methods on real data would clearly be preferable. but such data is usually not available (2013).</p></li>
+</ul>
+</li>
+<li><p>only use linear SVMs, since</p>
+<ul>
+<li><p>faster to train</p></li>
+<li><p>small number of samples</p></li>
+</ul>
+</li>
+<li><p>outer product</p>
+<ul>
+<li><p>[10] use concatenation, non-linear SVM. More time-consuming to train and two parameters to be optimized.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{x}\)</span> is a matrix?? vectorization? communtative?</p></li>
+</ul>
+</li>
+<li><p>unbalanced data sets</p>
+<ul>
+<li><p>+ve &gt;&gt; -ve</p></li>
+<li><p>no improvements after chenge weight</p></li>
+</ul>
+</li>
+</ul>
+<p>Mixed regulatory networks</p>
+<ul class="simple">
+<li><p>Z-SCORE method fails when a gene is regulated by an or-junction of two genes</p></li>
+<li><p>Unsupervised methods are appropriate for the inference only of simple networks that are entirely composed of inhibitory or activating interactions but not both.</p></li>
+<li><p>any method that infers interactions from the similarity of expression profiles alone (without further information e.g. knowckouts, existing interactions) is prone to fail in a mixed regulartory case. See Fig 8.</p>
+<ul>
+<li><p>Schaffter et al. [12] identify other common network motifs and the methods that tend to infer them <strong>incorrectly</strong></p></li>
+<li><p>Krishnan et al. [38] show that networks of a certain complexity cannot be reverse-engineered from expression data <strong>alone</strong>.</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../_images/mix-reg.png"><img alt="" src="../_images/mix-reg.png" style="width: 50%;" /></a>
+</div>
+<div class="section" id="ref-of-interest">
+<h2>Ref of interest<a class="headerlink" href="#ref-of-interest" title="Permalink to this headline">¶</a></h2>
+<p>unsup method: how to do classification from weights?</p>
+<ul class="simple">
+<li><p>e.g. mutual information?</p></li>
+</ul>
+<p>SIRENE [9] supervised inference of regulatory networks, using SVM</p>
+<p>Z-score [7]</p>
+<ul class="simple">
+<li><p>typo ??</p></li>
+<li><p><span class="math notranslate nohighlight">\(z_{ij}\)</span> = constant for all <span class="math notranslate nohighlight">\(i\)</span> ??</p></li>
+</ul>
+<p>Marbach et al. [8]</p>
+<ul class="simple">
+<li><p>infer the complete network with &gt;5000 nodes</p></li>
+<li><p>suggest that incorporating additional information such as transcriptionfactor binding and chromatin modification data or promoter sequences might improve the accuracy of prediction.</p></li>
+</ul>
+<p>Qs</p>
+<ul class="simple">
+<li><p>can we predict type of edge, from binary (null, interaction) to 3 class (null, inhibitory, activating)?</p></li>
+<li><p>how to deal with complex regulatory problem in Fig 8? need a special aggregation function in GNN?</p>
+<ul>
+<li><p>in message passing, some inhibitory, some activating</p></li>
+<li><p>differ from the ‘homopholy’ assumption</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./summary"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="grn.html" title="previous page">Gene Regulatory Networks</a>
+    <a class='right-next' id="next-link" href="grgnn.html" title="next page">GRGNN</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dennis Zheng<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
