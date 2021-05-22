@@ -1,9 +1,11 @@
-
 - file: index
 
-- file: summary/papers
+- file: intro/00-intro
   sections:
-    - file: summary/bio-net-dl
-    - file: summary/grn
-    - file: summary/grn-ssu
-    - file: summary/grgnn
+    - file: intro/11-grn
+
+- file: summary/00-summary
+  sections:
+    - file: summary/11-bio-net-dl
+    - file: summary/31-grn-ssu
+    - file: summary/51-grgnn

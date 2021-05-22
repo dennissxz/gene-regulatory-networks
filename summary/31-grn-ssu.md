@@ -1,7 +1,8 @@
-# Sup, semi-sup, unsup inference of GRN
+# Sup, semi-sup, unsup inference
 
-[pdf](../reading/grn-ssu.pdf) Maetschke, 2013
-[link1](../imgs/graph-gene-exp.png), [link2](imgs/graph-gene-exp.png)
+
+Maetschke, Stefan R., Piyush B. Madhamshettiwar, Melissa J. Davis, and Mark A. Ragan. "Supervised, semi-supervised and unsupervised inference of gene regulatory networks." Briefings in bioinformatics 15, no. 2 (2014): 195-211. [[PDF (main)](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-ssu.pdf)] [[PDF (with supplementary material)](https://arxiv.org/pdf/1301.1083.pdf)]
+
 
 Evaluate ssu methods on simulated and experimental expression data.
 
