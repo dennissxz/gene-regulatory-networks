@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paper Summary &#8212; Inference for Gene Regulartory Networks</title>
+    <title>Gene Regulatory Networks &#8212; Inference for Gene Regulartory Networks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -50,11 +50,13 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Biological Networks and DL" href="bio-net-dl.html" />
-    <link rel="prev" title="Inference for Gene Regulartory Networks" href="../index.html" />
+    <link rel="next" title="Paper Summary" href="../summary/00-summary.html" />
+    <link rel="prev" title="Introduction" href="00-intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -91,32 +93,44 @@
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   Paper Summary
+  <a class="reference internal" href="00-intro.html">
+   Introduction
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="bio-net-dl.html">
-     Biological Networks and DL
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="grn.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Gene Regulatory Networks
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../summary/00-summary.html">
+   Paper Summary
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="grn-ssu.html">
-     Sup, semi-sup, unsup inference of GRN
+    <a class="reference internal" href="../summary/11-bio-net-dl.html">
+     Biological networks and deep learning
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="grgnn.html">
+    <a class="reference internal" href="../summary/31-grn-ssu.html">
+     Sup, semi-sup, unsup inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../summary/51-grgnn.html">
      GRGNN
     </a>
    </li>
@@ -163,7 +177,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/summary/papers.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/intro/11-grn.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -196,10 +210,45 @@
         
               <div>
                 
-  <div class="section" id="paper-summary">
-<h1>Paper Summary<a class="headerlink" href="#paper-summary" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="section" id="gene-regulatory-networks">
+<h1>Gene Regulatory Networks<a class="headerlink" href="#gene-regulatory-networks" title="Permalink to this headline">¶</a></h1>
+<p>Problem</p>
+<ul class="simple">
+<li><p>Though experimentally infeasible, can we construct the gene regulatory (activation or repression) networks as a problem of network inference, given measurements sufficiently reflective of gene regulatory activity?</p></li>
+</ul>
+<p>Definition</p>
+<ul class="simple">
+<li><p><strong>Genes</strong> are sets of segments of DNA that encode information necessary to the proper functioning of a cell.</p></li>
+<li><p>such information is utilized in the <strong>expression</strong> of genes, whereby biochemical products, in the form of RNA or proteins, are created</p></li>
+<li><p>The <strong>regulation</strong> of a gene refers to the control of its expression.</p></li>
+<li><p>A gene that plays a role in controlling gene expression at transcription stage (DNA is copied to RNA) is called a <strong>transcription factor</strong> (TF), and the genes that are controlled by it, gene <strong>targets</strong>.</p></li>
+<li><p>The problem of inferring regulatory interactions among genes in this context refers to the identification of <strong>TF/target gene pairs</strong>.</p></li>
+</ul>
+<p>Measurements</p>
+<ul class="simple">
+<li><p>The relative levels of RNA expression of genes in a cell, under a given set of conditions, can be measured efficiently on a genome-wide scale using <strong>microarray</strong> technologies.</p></li>
+<li><p>In particular, for each gene <span class="math notranslate nohighlight">\(i\)</span>, the vertex attribute vector <span class="math notranslate nohighlight">\(\boldsymbol{x}_i \in \mathbb{R} ^m\)</span> typically consists of RNA relative expression levels measured for that gene over a compendium of <span class="math notranslate nohighlight">\(m\)</span> experiments, e.g. changes in pH, growing media, heat, oxygen concentrations, and genetic composition.</p></li>
+</ul>
+<p>Observation</p>
+<ul class="simple">
+<li><p>Due to the nature of the regulation process, the expression levels of TFs and their targets often can be expected to be highly correlated with each other</p></li>
+<li><p>Given that many TFs have <strong>multiple</strong> targets, including other TFs, the expression levels among many of the TFs can be expected to be highly correlated as well</p></li>
+<li><p>Such correlations are evident in the image plot, where the order of the
+genes (rows) and experiments (columns) has been chosen using a cluster analysis, to enhance the visual assessment of correlation.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/graph-gene-exp.png"><img alt="" src="../_images/graph-gene-exp.png" style="width: 70%;" /></a>
+<p>Image representation of 445 microarray expression profiles collected for E. coli, under various conditions, for the 153 genes that are listed as known transcription factors (TF) in the RegulonDB, using blue-organge scale. [Kolaczyk 2009]
+database.</p>
+<p><strong>Challenge</strong></p>
+<ul class="simple">
+<li><p>A TF can actually be a target of another TF. And so direct correlation between measurements of a TF and a gene target may actually just be a reflection of the regulation of that TF by another TF. Sol: use partial correlation.</p></li>
+</ul>
+<p>Methods and Results</p>
+<ul class="simple">
+<li><p>testing null correlation to construct undirected graph. See SAND pg.221-223</p></li>
+<li><p>All methods have high precision and low recall. Faith et al. [SAND 140] have argued that the low recall is due primarily to limitations in both the number and the diversity of the expression profiles produced by the available experiments.</p></li>
+<li><p>Takeaway: high precision model is still good for prediction purpose, though not good at recover old true labels (low recall).</p></li>
+</ul>
 </div>
 
     <script type="text/x-thebe-config">
@@ -215,7 +264,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./summary"
+            path: "./intro"
         },
         predefinedOutput: true
     }
@@ -227,8 +276,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">Inference for Gene Regulartory Networks</a>
-    <a class='right-next' id="next-link" href="bio-net-dl.html" title="next page">Biological Networks and DL</a>
+    <a class='left-prev' id="prev-link" href="00-intro.html" title="previous page">Introduction</a>
+    <a class='right-next' id="next-link" href="../summary/00-summary.html" title="next page">Paper Summary</a>
 
         </div>
         

@@ -1,6 +1,6 @@
-# Biological Networks and DL
+# Biological networks and deep learning
 
-[pdf](reading/bio-net-dl.pdf)
+Muzio, Giulia, Leslie O’Bray, and Karsten Borgwardt. "Biological network analysis with deep learning." Briefings in bioinformatics 22, no. 2 (2021): 1515-1530. [[PDF](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/bio-net-dl.pdf)] [[DOI](https://doi.org/10.1093/bib/bbaa257)]
 
 Goal
 - describe biological networks and review the principles and underlying algorithms of GNNs.
