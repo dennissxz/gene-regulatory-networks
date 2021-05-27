@@ -128,7 +128,12 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="51-grgnn.html">
+    <a class="reference internal" href="53-grn-denoise.html">
+     A Denoise Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="71-grgnn.html">
      GRGNN
     </a>
    </li>
@@ -205,6 +210,11 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#abstract">
+   Abstract
+  </a>
+ </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#biological-networks">
    Biological Networks
@@ -284,29 +294,28 @@
                 
   <div class="section" id="biological-networks-and-deep-learning">
 <h1>Biological networks and deep learning<a class="headerlink" href="#biological-networks-and-deep-learning" title="Permalink to this headline">¶</a></h1>
-<p>Muzio, Giulia, Leslie O’Bray, and Karsten Borgwardt. “Biological network analysis with deep learning.” Briefings in bioinformatics 22, no. 2 (2021): 1515-1530. [<a class="reference external" href="https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/bio-net-dl.pdf">PDF</a>] [<a class="reference external" href="https://doi.org/10.1093/bib/bbaa257">DOI</a>]</p>
-<p>Goal</p>
+<p>[<a class="reference external" href="https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/bio-net-dl.pdf">PDF</a>] [<a class="reference external" href="https://doi.org/10.1093/bib/bbaa257">DOI</a>] Muzio, Giulia, Leslie O’Bray, and Karsten Borgwardt. “Biological network analysis with deep learning.” Briefings in bioinformatics 22, no. 2 (2021): 1515-1530.</p>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>Topics</p>
 <ul class="simple">
-<li><p>describe biological networks and review the principles and underlying algorithms of GNNs.</p></li>
-<li><p>discuss domains in bioinformatics in which graph neural networks are frequently being applied at the moment, such as</p>
+<li><p>Describe biological networks and review the principles and underlying algorithms of GNNs.</p></li>
+<li><p>Discuss domains in bioinformatics in which graph neural networks are frequently being applied at the moment, such as</p>
 <ul>
 <li><p>protein function prediction,</p></li>
 <li><p>protein–protein interaction prediction,</p></li>
 <li><p>in silico drug discovery and development.</p></li>
 </ul>
 </li>
-<li><p>highlight application areas such as gene regulatory networks and disease diagnosis where deep learning is emerging as a new tool to answer classic questions like gene interaction prediction and automatic disease
-prediction from data.</p></li>
+<li><p>Highlight application areas such as gene regulatory networks and disease diagnosis where deep learning is emerging as a new tool to answer classic questions like gene interaction prediction and automatic disease prediction from data.</p></li>
 </ul>
-<p>Trend</p>
+<p>Current trend</p>
 <ul class="simple">
-<li><p>experimental high-throughput technologies have expanded the availability and quantity of molecular data in biology</p></li>
-<li><p>computing technology</p></li>
-</ul>
-<p>DL result</p>
-<ul class="simple">
+<li><p>Experimental high-throughput technologies have expanded the availability and quantity of molecular data in biology</p></li>
+<li><p>Advent of computing technology</p></li>
 <li><p>The early examples of applying deep learning to biological network data, detailed in this paper, have consistently reported comparable or better results than the existing classical machine learning methods.</p></li>
 </ul>
+</div>
 <div class="section" id="biological-networks">
 <h2>Biological Networks<a class="headerlink" href="#biological-networks" title="Permalink to this headline">¶</a></h2>
 <p>necessity</p>

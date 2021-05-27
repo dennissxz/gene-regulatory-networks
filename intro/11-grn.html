@@ -130,7 +130,12 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../summary/51-grgnn.html">
+    <a class="reference internal" href="../summary/53-grn-denoise.html">
+     A Denoise Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../summary/71-grgnn.html">
      GRGNN
     </a>
    </li>
@@ -212,16 +217,14 @@
                 
   <div class="section" id="gene-regulatory-networks">
 <h1>Gene Regulatory Networks<a class="headerlink" href="#gene-regulatory-networks" title="Permalink to this headline">¶</a></h1>
-<p>Problem</p>
-<ul class="simple">
-<li><p>Though experimentally infeasible, can we construct the gene regulatory (activation or repression) networks as a problem of network inference, given measurements sufficiently reflective of gene regulatory activity?</p></li>
-</ul>
-<p>Definition</p>
+<p>Statistical Analysis of Network Data: Methods and Models. Kolaczyk, Eric D. [<a class="reference external" href="https://www.springer.com/gp/book/9780387881454">Link</a>].</p>
+<p>Definitions</p>
 <ul class="simple">
 <li><p><strong>Genes</strong> are sets of segments of DNA that encode information necessary to the proper functioning of a cell.</p></li>
 <li><p>such information is utilized in the <strong>expression</strong> of genes, whereby biochemical products, in the form of RNA or proteins, are created</p></li>
 <li><p>The <strong>regulation</strong> of a gene refers to the control of its expression.</p></li>
-<li><p>A gene that plays a role in controlling gene expression at transcription stage (DNA is copied to RNA) is called a <strong>transcription factor</strong> (TF), and the genes that are controlled by it, gene <strong>targets</strong>.</p></li>
+<li><p>A gene that plays a role in regulating gene expression at transcription stage (DNA is copied to RNA) is called a <strong>transcription factor</strong> (TF), and the genes that are controlled by it, gene <strong>targets</strong>.</p></li>
+<li><p>The regulatory relation can be activatory or inhibitory (aka repression).</p></li>
 <li><p>The problem of inferring regulatory interactions among genes in this context refers to the identification of <strong>TF/target gene pairs</strong>.</p></li>
 </ul>
 <p>Measurements</p>
@@ -231,23 +234,52 @@
 </ul>
 <p>Observation</p>
 <ul class="simple">
-<li><p>Due to the nature of the regulation process, the expression levels of TFs and their targets often can be expected to be highly correlated with each other</p></li>
+<li><p>Due to the nature of the regulation process, the expression levels of TFs and their targets often can be expected to be <strong>highly correlated</strong> with each other</p></li>
 <li><p>Given that many TFs have <strong>multiple</strong> targets, including other TFs, the expression levels among many of the TFs can be expected to be highly correlated as well</p></li>
+<li><p>Such correlation can be represented by a bipartite graph, <span class="math notranslate nohighlight">\(G = (V_{TF}, V_{target}, E)\)</span></p>
+<ul>
+<li><p>edges exists between <span class="math notranslate nohighlight">\(v_{TF}\)</span> and <span class="math notranslate nohighlight">\(v_{target}\)</span>, as well as among <span class="math notranslate nohighlight">\(V_{TF}\)</span>.</p></li>
+<li><p>some study consider directed edges, some consider undirected (interaction).</p></li>
+</ul>
+</li>
 <li><p>Such correlations are evident in the image plot, where the order of the
 genes (rows) and experiments (columns) has been chosen using a cluster analysis, to enhance the visual assessment of correlation.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/graph-gene-exp.png"><img alt="" src="../_images/graph-gene-exp.png" style="width: 70%;" /></a>
-<p>Image representation of 445 microarray expression profiles collected for E. coli, under various conditions, for the 153 genes that are listed as known transcription factors (TF) in the RegulonDB, using blue-organge scale. [Kolaczyk 2009]
-database.</p>
-<p><strong>Challenge</strong></p>
+<div class="figure align-default" id="graph-gene-exp-png">
+<a class="reference internal image-reference" href="../_images/graph-gene-exp.png"><img alt="" src="../_images/graph-gene-exp.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Image representation of 445 microarray expression profiles collected for E. coli, under various conditions, for the 153 genes that are listed as known transcription factors (TF) in the RegulonDB database, using blue-organge scale. [Kolaczyk 2009]</span><a class="headerlink" href="#graph-gene-exp-png" title="Permalink to this image">¶</a></p>
+</div>
+<p>Problem</p>
 <ul class="simple">
-<li><p>A TF can actually be a target of another TF. And so direct correlation between measurements of a TF and a gene target may actually just be a reflection of the regulation of that TF by another TF. Sol: use partial correlation.</p></li>
+<li><p>Though experimentally infeasible, can we construct the gene regulatory (activation or repression) networks as a problem of network inference, given measurements sufficiently reflective of gene regulatory activity?</p></li>
 </ul>
-<p>Methods and Results</p>
+<p>Challenge</p>
+<ul>
+<li><p>A TF can actually be a target of another TF. And so direct correlation between measurements of a TF and a gene target may actually just be a reflection of the regulation of that TF by another TF.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+  \text{TF} _1 \quad &amp;\longrightarrow \text{TF} _2 \\
+  \ddots &amp;\qquad \swarrow \\
+  &amp; \text{target}  \\
+  \end{aligned}\end{split}\]</div>
+<p>Solution: use partial correlation.</p>
+</li>
+</ul>
+<p>Intro: correlation-based methods</p>
 <ul class="simple">
-<li><p>testing null correlation to construct undirected graph. See SAND pg.221-223</p></li>
-<li><p>All methods have high precision and low recall. Faith et al. [SAND 140] have argued that the low recall is due primarily to limitations in both the number and the diversity of the expression profiles produced by the available experiments.</p></li>
+<li><p>Conduct hypothesis testing of null correlation to construct undirected graph. See SAND pg.221-223</p></li>
+<li><p>All correlation-based methods there have high precision and low recall. Faith et al. [SAND 140] have argued that the low recall is due primarily to limitations in both the number and the diversity of the expression profiles produced by the available experiments.</p></li>
 <li><p>Takeaway: high precision model is still good for prediction purpose, though not good at recover old true labels (low recall).</p></li>
+</ul>
+<p>Other challenges</p>
+<ul>
+<li><p>limited data with gold standard labels</p></li>
+<li><p>Mixed regulatory relation may exist</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/mix-reg.png"><img alt="" src="../_images/mix-reg.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Mixed regulation</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
 </ul>
 </div>
 

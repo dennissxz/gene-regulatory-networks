@@ -55,7 +55,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="GRGNN" href="51-grgnn.html" />
+    <link rel="next" title="A Denoise Algorithm" href="53-grn-denoise.html" />
     <link rel="prev" title="Biological networks and deep learning" href="11-bio-net-dl.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -130,7 +130,12 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="51-grgnn.html">
+    <a class="reference internal" href="53-grn-denoise.html">
+     A Denoise Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="71-grgnn.html">
      GRGNN
     </a>
    </li>
@@ -267,7 +272,7 @@
                 
   <div class="section" id="sup-semi-sup-unsup-inference">
 <h1>Sup, semi-sup, unsup inference<a class="headerlink" href="#sup-semi-sup-unsup-inference" title="Permalink to this headline">¶</a></h1>
-<p>Maetschke, Stefan R., Piyush B. Madhamshettiwar, Melissa J. Davis, and Mark A. Ragan. “Supervised, semi-supervised and unsupervised inference of gene regulatory networks.” Briefings in bioinformatics 15, no. 2 (2014): 195-211. [<a class="reference external" href="https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-ssu.pdf">PDF (main)</a>] [<a class="reference external" href="https://arxiv.org/pdf/1301.1083.pdf">PDF (with supplementary material)</a>]</p>
+<p>[<a class="reference external" href="https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-ssu.pdf">PDF (main)</a>] [<a class="reference external" href="https://arxiv.org/pdf/1301.1083.pdf">PDF (with supplementary material)</a>] Maetschke, Stefan R., Piyush B. Madhamshettiwar, Melissa J. Davis, and Mark A. Ragan. “Supervised, semi-supervised and unsupervised inference of gene regulatory networks.” Briefings in bioinformatics 15, no. 2 (2014): 195-211.</p>
 <p>Evaluate ssu methods on simulated and experimental expression data.</p>
 <p>Results:</p>
 <ul class="simple">
@@ -338,12 +343,12 @@ and the actually known, partial networks, we performed evaluations on simulated,
 <td><p>+tive: activating. -tive: inhibitory. Use absolute value since the evluation does not distinguish between inhibiting and activating</p></td>
 </tr>
 <tr class="row-odd"><td><p>SPEARMAN-C</p></td>
-<td><p>$w_{i j}=\left</p></td>
-<td><p>\operatorname{corr}\left(X_{i}, X_{j}\right) \cdot \frac{1}{n} \sum_{k}^{n} \operatorname{corr}\left(X_{i}, X_{k}\right)\right</p></td>
+<td><p>$w_{i j}=</p></td>
+<td><p>\operatorname{corr}\left(X_{i}, X_{j}\right) \cdot \frac{1}{n} \sum_{k}^{n} \operatorname{corr}\left(X_{i}, X_{k}\right)</p></td>
 </tr>
 <tr class="row-even"><td><p>WGCNA [30] Weighted gene co-expression network analysis</p></td>
-<td><p>$w_{i j}=\left</p></td>
-<td><p>\operatorname{corr}\left(X_{i}, X_{j}\right)\right</p></td>
+<td><p>$w_{i j}=</p></td>
+<td><p>\operatorname{corr}\left(X_{i}, X_{j}\right)</p></td>
 </tr>
 <tr class="row-odd"><td><p>RN [31] relevance netwoks</p></td>
 <td><p>empirical mutual information</p></td>
@@ -539,7 +544,10 @@ knockdown or multifactorial data.</p></li>
 </ul>
 </li>
 </ul>
+<div class="figure align-default" id="mix-reg">
 <a class="reference internal image-reference" href="../_images/mix-reg.png"><img alt="" src="../_images/mix-reg.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Mixed regulation</span><a class="headerlink" href="#mix-reg" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="ref-of-interest">
 <h2>Ref of interest<a class="headerlink" href="#ref-of-interest" title="Permalink to this headline">¶</a></h2>
@@ -597,7 +605,7 @@ knockdown or multifactorial data.</p></li>
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="11-bio-net-dl.html" title="previous page">Biological networks and deep learning</a>
-    <a class='right-next' id="next-link" href="51-grgnn.html" title="next page">GRGNN</a>
+    <a class='right-next' id="next-link" href="53-grn-denoise.html" title="next page">A Denoise Algorithm</a>
 
         </div>
         

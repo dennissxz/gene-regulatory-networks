@@ -1,7 +1,6 @@
 # Sup, semi-sup, unsup inference
 
-
-Maetschke, Stefan R., Piyush B. Madhamshettiwar, Melissa J. Davis, and Mark A. Ragan. "Supervised, semi-supervised and unsupervised inference of gene regulatory networks." Briefings in bioinformatics 15, no. 2 (2014): 195-211. [[PDF (main)](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-ssu.pdf)] [[PDF (with supplementary material)](https://arxiv.org/pdf/1301.1083.pdf)]
+[[PDF (main)](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-ssu.pdf)] [[PDF (with supplementary material)](https://arxiv.org/pdf/1301.1083.pdf)] Maetschke, Stefan R., Piyush B. Madhamshettiwar, Melissa J. Davis, and Mark A. Ragan. "Supervised, semi-supervised and unsupervised inference of gene regulatory networks." Briefings in bioinformatics 15, no. 2 (2014): 195-211.
 
 
 Evaluate ssu methods on simulated and experimental expression data.
@@ -55,8 +54,8 @@ unsup rely on gene expression profiles data  only.
 | Method | Formula | Remark|
 | - | - | - |
 | Correlation   | Pearson, Spearmane, Kendalls | +tive: activating. -tive: inhibitory. Use absolute value since the evluation does not distinguish between inhibiting and activating|
-| SPEARMAN-C  |  $w_{i j}=\left|\operatorname{corr}\left(X_{i}, X_{j}\right) \cdot \frac{1}{n} \sum_{k}^{n} \operatorname{corr}\left(X_{i}, X_{k}\right)\right|$ |  favor hub nodes, which have many, strong interactions. |
-| WGCNA [30] Weighted gene co-expression network analysis  | $w_{i j}=\left|\operatorname{corr}\left(X_{i}, X_{j}\right)\right|^{ \beta}, \beta \ge 1$  |  Amplifies high correlation. Monotonic, hence not change AUC |
+| SPEARMAN-C  |  $w_{i j}=|\operatorname{corr}\left(X_{i}, X_{j}\right) \cdot \frac{1}{n} \sum_{k}^{n} \operatorname{corr}\left(X_{i}, X_{k}\right)|$ |  favor hub nodes, which have many, strong interactions. |
+| WGCNA [30] Weighted gene co-expression network analysis  | $w_{i j}=|\operatorname{corr}\left(X_{i}, X_{j}\right)|^{ \beta}, \beta \ge 1$  |  Amplifies high correlation. Monotonic, hence not change AUC |
 | RN [31] relevance netwoks   |  empirical mutual information |   |
 | CLR [11] context likelihood of relatedness  | $z_{i}=\max _{j}\left(0, \frac{I\left(X_{i}, X_{j}\right)-\mu_{i}}{\sigma_{i}}\right),$ $w_{i j}=\sqrt{z_{i}^{2}+z_{j}^{2}}$  | take backgounrd distribution into account, reduce the false prediction based on spurious correlations and indirect interactions.  |
 | ARACNE [13] accurate cellular networks | $I\left(X_{i}, X_{j}\right) \leq \min \left(I\left(X_{i}, X_{j}\right), I\left(X_{j}, X_{k}\right)\right)$ pruned triplet if they violate the DPI beyond tolerance  |  Better than RN BN. Applies Data processing inequality (DPI) |
@@ -179,7 +178,12 @@ Mixed regulatory networks
   - Schaffter et al. [12] identify other common network motifs and the methods that tend to infer them **incorrectly**
   - Krishnan et al. [38] show that networks of a certain complexity cannot be reverse-engineered from expression data **alone**.
 
+:::{figure} mix-reg
 <img src="../imgs/mix-reg.png" width = "50%" alt=""/>
+
+Mixed regulation
+:::
+
 
 ## Ref of interest
 
