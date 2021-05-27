@@ -1,21 +1,20 @@
 # Biological networks and deep learning
 
-Muzio, Giulia, Leslie O’Bray, and Karsten Borgwardt. "Biological network analysis with deep learning." Briefings in bioinformatics 22, no. 2 (2021): 1515-1530. [[PDF](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/bio-net-dl.pdf)] [[DOI](https://doi.org/10.1093/bib/bbaa257)]
+[[PDF](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/bio-net-dl.pdf)] [[DOI](https://doi.org/10.1093/bib/bbaa257)] Muzio, Giulia, Leslie O’Bray, and Karsten Borgwardt. "Biological network analysis with deep learning." Briefings in bioinformatics 22, no. 2 (2021): 1515-1530.
 
-Goal
-- describe biological networks and review the principles and underlying algorithms of GNNs.
-- discuss domains in bioinformatics in which graph neural networks are frequently being applied at the moment, such as
+## Abstract
+
+Topics
+- Describe biological networks and review the principles and underlying algorithms of GNNs.
+- Discuss domains in bioinformatics in which graph neural networks are frequently being applied at the moment, such as
   - protein function prediction,
   - protein–protein interaction prediction,
   - in silico drug discovery and development.
-- highlight application areas such as gene regulatory networks and disease diagnosis where deep learning is emerging as a new tool to answer classic questions like gene interaction prediction and automatic disease
-prediction from data.
+- Highlight application areas such as gene regulatory networks and disease diagnosis where deep learning is emerging as a new tool to answer classic questions like gene interaction prediction and automatic disease prediction from data.
 
-Trend
-- experimental high-throughput technologies have expanded the availability and quantity of molecular data in biology
-- computing technology
-
-DL result
+Current trend
+- Experimental high-throughput technologies have expanded the availability and quantity of molecular data in biology
+- Advent of computing technology
 - The early examples of applying deep learning to biological network data, detailed in this paper, have consistently reported comparable or better results than the existing classical machine learning methods.
 
 ## Biological Networks

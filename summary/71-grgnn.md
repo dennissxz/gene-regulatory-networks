@@ -1,6 +1,6 @@
 # GRGNN
 
-Wang, Juexin, Anjun Ma, Qin Ma, Dong Xu, and Trupti Joshi. "Inductive inference of gene regulatory network using supervised and semi-supervised graph neural networks." Computational and Structural Biotechnology Journal 18 (2020): 3335-3343. [[PDF](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-grgnn.pdf)] [[DOI](https://www.sciencedirect.com/science/article/pii/S200103702030444X?via%3Dihub)] [[Github](https://github.com/juexinwang/GRGNN)].
+[[PDF](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-grgnn.pdf)] [[DOI](https://www.sciencedirect.com/science/article/pii/S200103702030444X?via%3Dihub)] [[Github](https://github.com/juexinwang/GRGNN)] Wang, Juexin, Anjun Ma, Qin Ma, Dong Xu, and Trupti Joshi. "Inductive inference of gene regulatory network using supervised and semi-supervised graph neural networks." Computational and Structural Biotechnology Journal 18 (2020): 3335-3343.
 
 We propose an end-to-end gene regulatory graph neural network (GRGNN) approach to reconstruct GRNs from scratch utilizing the gene expression data, in both a supervised and a semisupervised framework.
 
