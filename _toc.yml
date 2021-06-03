@@ -3,6 +3,7 @@
 - file: intro/00-intro
   sections:
     - file: intro/11-grn
+    - file: intro/31-datasets
 
 - file: summary/00-summary
   sections:
