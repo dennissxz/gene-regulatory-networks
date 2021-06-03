@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gene Regulatory Networks &#8212; Inference for Gene Regulartory Networks</title>
+    <title>Datasets &#8212; Inference for Gene Regulartory Networks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -55,8 +55,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Datasets" href="31-datasets.html" />
-    <link rel="prev" title="Introduction" href="00-intro.html" />
+    <link rel="next" title="Paper Summary" href="../summary/00-summary.html" />
+    <link rel="prev" title="Gene Regulatory Networks" href="11-grn.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -102,13 +102,13 @@
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-grn.html">
      Gene Regulatory Networks
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="31-datasets.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Datasets
     </a>
    </li>
@@ -187,7 +187,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/intro/11-grn.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/intro/31-datasets.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -212,6 +212,70 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limitation">
+   Limitation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dream4">
+   DREAM4
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dream5">
+   DREAM5
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulators">
+   Simulators
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#genenetweaver">
+     GeneNetWeaver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#installataion">
+       Installataion
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#steps">
+       Steps
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cons">
+       Cons
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syntren">
+     SynTReN
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Steps
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -220,73 +284,158 @@
         
               <div>
                 
-  <div class="section" id="gene-regulatory-networks">
-<h1>Gene Regulatory Networks<a class="headerlink" href="#gene-regulatory-networks" title="Permalink to this headline">¶</a></h1>
-<p>Statistical Analysis of Network Data: Methods and Models. Kolaczyk, Eric D. [<a class="reference external" href="https://www.springer.com/gp/book/9780387881454">Link</a>].</p>
-<p>Definitions</p>
+  <div class="section" id="datasets">
+<h1>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="limitation">
+<h2>Limitation<a class="headerlink" href="#limitation" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../summary/11-bio-net-dl.html#bio-net-dl"><span class="std std-ref">Reference</span></a>.</p>
+<p>Dataset limitation</p>
 <ul class="simple">
-<li><p><strong>Genes</strong> are sets of segments of DNA that encode information necessary to the proper functioning of a cell.</p></li>
-<li><p>such information is utilized in the <strong>expression</strong> of genes, whereby biochemical products, in the form of RNA or proteins, are created</p></li>
-<li><p>The <strong>regulation</strong> of a gene refers to the control of its expression.</p></li>
-<li><p>A gene that plays a role in regulating gene expression at transcription stage (DNA is copied to RNA) is called a <strong>transcription factor</strong> (TF), and the genes that are controlled by it, gene <strong>targets</strong>.</p></li>
-<li><p>The regulatory relation can be activatory or inhibitory (aka repression).</p></li>
-<li><p>The problem of inferring regulatory interactions among genes in this context refers to the identification of <strong>TF/target gene pairs</strong>.</p></li>
+<li><p>curated GRN datasets are not yet available or are difficult to obtain for a large number of organisms</p></li>
+<li><p>gene expression data are intrinsically noisy and therefore not ideal for training models.</p></li>
 </ul>
-<p>Measurements</p>
-<ul class="simple">
-<li><p>The relative levels of RNA expression of genes in a cell, under a given set of conditions, can be measured efficiently on a genome-wide scale using <strong>microarray</strong> technologies.</p></li>
-<li><p>In particular, for each gene <span class="math notranslate nohighlight">\(i\)</span>, the vertex attribute vector <span class="math notranslate nohighlight">\(\boldsymbol{x}_i \in \mathbb{R} ^m\)</span> typically consists of RNA relative expression levels measured for that gene over a compendium of <span class="math notranslate nohighlight">\(m\)</span> experiments, e.g. changes in pH, growing media, heat, oxygen concentrations, and genetic composition.</p></li>
-</ul>
-<p>Observation</p>
-<ul class="simple">
-<li><p>Due to the nature of the regulation process, the expression levels of TFs and their targets often can be expected to be <strong>highly correlated</strong> with each other</p></li>
-<li><p>Given that many TFs have <strong>multiple</strong> targets, including other TFs, the expression levels among many of the TFs can be expected to be highly correlated as well</p></li>
-<li><p>Such correlation can be represented by a bipartite graph, <span class="math notranslate nohighlight">\(G = (V_{TF}, V_{target}, E)\)</span></p>
-<ul>
-<li><p>edges exists between <span class="math notranslate nohighlight">\(v_{TF}\)</span> and <span class="math notranslate nohighlight">\(v_{target}\)</span>, as well as among <span class="math notranslate nohighlight">\(V_{TF}\)</span>.</p></li>
-<li><p>some study consider directed edges, some consider undirected (interaction).</p></li>
-</ul>
-</li>
-<li><p>Such correlations are evident in the image plot, where the order of the
-genes (rows) and experiments (columns) has been chosen using a cluster analysis, to enhance the visual assessment of correlation.</p></li>
-</ul>
-<div class="figure align-default" id="graph-gene-exp-png">
-<a class="reference internal image-reference" href="../_images/graph-gene-exp.png"><img alt="" src="../_images/graph-gene-exp.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Image representation of 445 microarray expression profiles collected for E. coli, under various conditions, for the 153 genes that are listed as known transcription factors (TF) in the RegulonDB database, using blue-organge scale. [Kolaczyk 2009]</span><a class="headerlink" href="#graph-gene-exp-png" title="Permalink to this image">¶</a></p>
+<p>For this reason, GRNs are mostly analyzed with unsupervised methods, since supervised techniques, and deep learning in particular, require a large number of well annotated samples in order to be effective.</p>
 </div>
-<p>Problem</p>
+<div class="section" id="dream4">
+<h2>DREAM4<a class="headerlink" href="#dream4" title="Permalink to this headline">¶</a></h2>
+<p>Greenfield A, Madar A, Ostrer H, Bonneau R: DREAM4: combining genetic and dynamic information to identify biological networks and dynamical models. PloS one 2010, 5(10):e13397.</p>
+<p>Three datasets in DREAM4 100-gene in silicon.</p>
 <ul class="simple">
-<li><p>Though experimentally infeasible, can we construct the gene regulatory (activation or repression) networks as a problem of network inference, given measurements sufficiently reflective of gene regulatory activity?</p></li>
-</ul>
-<p>Challenge</p>
+<li><p>Each dataset contains 100 genes</p>
 <ul>
-<li><p>A TF can actually be a target of another TF. And so direct correlation between measurements of a TF and a gene target may actually just be a reflection of the regulation of that TF by another TF.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{aligned}
-  \text{TF} _1 \quad &amp;\longrightarrow \text{TF} _2 \\
-  \ddots &amp;\qquad \swarrow \\
-  &amp; \text{target}  \\
-  \end{aligned}\end{split}\]</div>
-<p>Solution: use partial correlation.</p>
+<li><p>For each gene, there are 10 times series, each time seires has 21 time points. Hence <span class="math notranslate nohighlight">\(\boldsymbol{g} \in \mathbb{R} ^{210}\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol{x} \in \mathbb{R} ^{420}\)</span>.</p></li>
+</ul>
 </li>
+<li><p>Each dataset is associated with a gold standard file, representing the true regulatory relationships (directed) between two genes.</p></li>
 </ul>
-<p>Intro: correlation-based methods</p>
-<ul class="simple">
-<li><p>Conduct hypothesis testing of null correlation to construct undirected graph. See SAND pg.221-223</p></li>
-<li><p>All correlation-based methods there have high precision and low recall. Faith et al. [SAND 140] have argued that the low recall is due primarily to limitations in both the number and the diversity of the expression profiles produced by the available experiments.</p></li>
-<li><p>Takeaway: high precision model is still good for prediction purpose, though not good at recover old true labels (low recall).</p></li>
-</ul>
-<p>Other challenges</p>
-<ul>
-<li><p>limited data with gold standard labels</p></li>
-<li><p>Mixed regulatory relation may exist</p>
-<div class="figure align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/mix-reg.png"><img alt="" src="../_images/mix-reg.png" style="width: 50%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Mixed regulation</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Net1</p></th>
+<th class="head"><p>Net2</p></th>
+<th class="head"><p>Net3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Directed</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nodes</p></td>
+<td><p>100</p></td>
+<td><p>100</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-even"><td><p>True present links</p></td>
+<td><p>176</p></td>
+<td><p>249</p></td>
+<td><p>195</p></td>
+</tr>
+<tr class="row-odd"><td><p>True missing links</p></td>
+<td><p>9724</p></td>
+<td><p>9651</p></td>
+<td><p>9705</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-</li>
-<li><p>Qs: multiple to one? one to multiple? multiple to multiple??</p></li>
+<div class="section" id="dream5">
+<h2>DREAM5<a class="headerlink" href="#dream5" title="Permalink to this headline">¶</a></h2>
+<p>Marbach D, Costello J, Ku«ffner R, et al. Wisdom of crowds for robust gene network inference. Nat Methods 2012;9(8): 796–804. [<a class="reference external" href="https://www.nature.com/articles/nmeth.2016">DOI</a>]</p>
+<p><a class="reference external" href="https://www.synapse.org/#%21Synapse:syn2787209/wiki/70350">Challenge Description</a>. Net 2 was not used in the final scoring..</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Network</p></th>
+<th class="head"><p>Organism</p></th>
+<th class="head"><p>#Genes</p></th>
+<th class="head"><p>#TF</p></th>
+<th class="head"><p>#Targets</p></th>
+<th class="head"><p>#Links</p></th>
+<th class="head"><p>#Samples</p></th>
+<th class="head"><p>#Avg degree per TF</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Net 1</p></td>
+<td><p>in silico</p></td>
+<td><p>1643</p></td>
+<td><p>195</p></td>
+<td><p>1448</p></td>
+<td><p>4012</p></td>
+<td><p>805</p></td>
+<td><p>20.57</p></td>
+</tr>
+<tr class="row-odd"><td><p>Net 2</p></td>
+<td><p>S. aureus</p></td>
+<td><p>2810</p></td>
+<td><p>99</p></td>
+<td><p>2711</p></td>
+<td><p></p></td>
+<td><p>160</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Net 3</p></td>
+<td><p>E. coli</p></td>
+<td><p>4511</p></td>
+<td><p>334</p></td>
+<td><p>4177</p></td>
+<td><p>2066</p></td>
+<td><p>805</p></td>
+<td><p>6.19</p></td>
+</tr>
+<tr class="row-odd"><td><p>Net 4</p></td>
+<td><p>S. cerevisiae</p></td>
+<td><p>5950</p></td>
+<td><p>333</p></td>
+<td><p>5617</p></td>
+<td><p>3940</p></td>
+<td><p>536</p></td>
+<td><p>11.83</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simulators">
+<h2>Simulators<a class="headerlink" href="#simulators" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="genenetweaver">
+<h3>GeneNetWeaver<a class="headerlink" href="#genenetweaver" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="installataion">
+<h4>Installataion<a class="headerlink" href="#installataion" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="http://gnw.sourceforge.net/genenetweaver.html">Website</a>. Need to install Java. If your browswer does not lauch the software, you may download <a class="reference external" href="https://github.com/tschaffter/gnw/blob/master/gnw-3.1.2b.jar">gnw-3.1.2b.jar</a> and double click it to launch the software locally.</p>
+</div>
+<div class="section" id="steps">
+<h4>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>extract <strong>subnetworks</strong> from known interaction networks (E. coli and S cerevisiae networks)</p></li>
+<li><p>simulate transcription and translation</p></li>
+<li><p>uses a set of ordinary differential equations describing chemical kinetics to generate expression data for experiments</p>
+<ul>
+<li><p>knockout: expression value of each gene is set to 0 in turn (hence #exp = #genes)</p></li>
+<li><p>knockdown: halved</p></li>
+<li><p>multifactorial: expression levels of a small number of genes are perturbed by a small random amount.</p></li>
 </ul>
+</li>
+</ul>
+</div>
+<div class="section" id="cons">
+<h4>Cons<a class="headerlink" href="#cons" title="Permalink to this headline">¶</a></h4>
+<p>Sample size = network size</p>
+</div>
+</div>
+<div class="section" id="syntren">
+<h3>SynTReN<a class="headerlink" href="#syntren" title="Permalink to this headline">¶</a></h3>
+<p>Similar but older simulator, faster than Gene NetWeaver, allows one to vary the sample number independently of the network size.</p>
+<div class="section" id="id1">
+<h4>Steps<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>extract E coli and S cerevisiae</p></li>
+<li><p>simulate transcription only</p></li>
+<li><p>simulate multifactorial only</p></li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -314,8 +463,8 @@ genes (rows) and experiments (columns) has been chosen using a cluster analysis,
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="00-intro.html" title="previous page">Introduction</a>
-    <a class='right-next' id="next-link" href="31-datasets.html" title="next page">Datasets</a>
+    <a class='left-prev' id="prev-link" href="11-grn.html" title="previous page">Gene Regulatory Networks</a>
+    <a class='right-next' id="next-link" href="../summary/00-summary.html" title="next page">Paper Summary</a>
 
         </div>
         
