@@ -1,3 +1,4 @@
+(bio-net-dl)=
 # Biological networks and deep learning
 
 [[PDF](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/bio-net-dl.pdf)] [[DOI](https://doi.org/10.1093/bib/bbaa257)] Muzio, Giulia, Leslie O’Bray, and Karsten Borgwardt. "Biological network analysis with deep learning." Briefings in bioinformatics 22, no. 2 (2021): 1515-1530.
@@ -19,7 +20,7 @@ Current trend
 
 ## Biological Networks
 
-necessity
+Research necessity
 - DNA, RNA, proteins, and metabolites have crucial roles in the molecular mechanism of the cellular processes underlying life
 - Stying their **structure** and **interaction** is fundamental for
   - development of new druges
@@ -29,7 +30,7 @@ It is possible to define biological networks at different levels of detail.
 
 ### Protein-Protein Interaction Networks (PPI)
 
-structure
+Structure
 - node: proteins
 - edge: interaction among proteins
   - type of edges/interaction: phosphorylation, or bond
@@ -39,18 +40,13 @@ Tasks
 - node classification: predicting the unknown function of a protein based on the functions of its neighbors in a PPI network.
 
 
-### Gene Regulatory Networks
+### Gene Regulatory Networks (GRN)
 
-Definitions
-- gene expression: the set of processes which leads to generating proteins from the DNA sequence
-
-Regulation mechanisms occur at different stages of protein production from DNA (transcription, translation, splicing phases.)
+Gene expression is the set of processes which leads to generating proteins from the DNA sequence. Regulation mechanisms occur at different stages of protein production from DNA (transcription, translation, splicing phases.)
 
 Structure
 - node represents a gene
 - a directed link among two genes implies that one gene directly regulates the expression of the other without mediation from other genes
-
-Qs: multiple to one? one to multiple? multiple to multiple??
 
 Tasks
 - link prediction: which genes regulate the expression of another?
@@ -73,28 +69,30 @@ Structure
 - node: drug
 - edge: interactions
 
-## GNNs
+## Graph Embeddings and GNNs
 
-Overview from embeddings to GNN
+### Overview
 
 - recurrent GNNs [84, 85]
   - Gated graph sequence neural networks. ICLR 2016
   - The graph neural network mode. IEEE 2009
+
 - spatial-temporal GNNs [86, 87]
   - Deep leaning on spatio-temporal graphs. CVPR 2016
   - Diffusion convolutional recurrent neural network: Data-driven traffic forecasting. ICLR 2018
+
 - graph embeddings: closely related to GNNs (building blocks), but are not always considered a subset of GNNs.
   - Hamilton W, Ying R, Leskovec J. Representation learning on graphs: Methods and applications. IEEE Data Eng Bull, 2017.
   - Cui P, Wang X, Pei J, et al. A survey on network embedding. IEEE Trans Knowl Data Eng 2019;31:833–52.
   - Cai H, Zheng VW, Chang KC. A comprehensive survey of graph embedding: Problems, techniques, and applications. IEEE Trans Knowl Data Eng 2018;30(9):1616–37.
+
 - graph GCNs: building blocks of many other GNN architectures
 
 
-
-
-Development
+### Development
 - Spectral methods, first introduced by Bruna et al. [93] and later Defferrard et al. [94], build a convolution by creating a **spectral filter** defined in the Fourier domain using the graph Laplacian.
   - However, due to the computational complexity of the eigendecomposition of the graph Laplacian necessary for spectral methods, many more methods have been developed using **spatial methods**, where the idea is to learn an embedding for each node by aggregating its neighborhood in each successive layer in the network
+
 - Spatial methods
   - Duvenaud [95], providing a permutation-invariant convolution that operates over all nodes in the graph
   - Kipf and Welling GCNs: bridge the gap between spatial and spectral methods by showing a spectral motivation for their spatial approach.
@@ -102,6 +100,7 @@ Development
   - Hamilton+ GraphSAGE: generalizable and computationally efficient approach
     - sampling neighbors
     - learning an aggregation function
+
 - Niepert et al. [30] solve the node correspondence problem by imposing an ordering upon the graph, and in doing so opens the door to utilize a more traditional CNN structure.
 
 
@@ -138,12 +137,12 @@ Dataset limitation
 - curated GRN datasets are not yet available or are difficult to obtain for a large number of organisms [49, 121]
 - gene expression data are intrinsically noisy [122] and therefore not ideal for training models.
 
-
 For this reason, GRNs are mostly analyzed with unsupervised methods [121], since supervised techniques, and deep learning in particular, require a large number of well annotated samples in order to be effective.
 
 However, some deep learning models, specifically RNNs, report promising results, although they do not use any kind of graph information to perform the task. One example is the work in [122], which enhances the training quality by introducing a non-linear Kalman filter, which deals very effectively with the noise in the data
 
 Turki et al. [49] present an example of graph-based deep learning approaches. The authors use an unsupervised method to obtain a preliminary version of the GRN from gene expression time series data, which is **denoised** through a cleaning algorithm, and then used to train diverse supervised methods to perform link prediction among gene pairs.
+
 - The proposed data cleaning algorithm is of crucial importance and could positively impact the field of GRN analyses since it increases the quality of the GRN data. More in detail, the denoised features are obtained by projecting the original features onto the eigenvectors of the distance matrix of the feature vectors calculated using the Laplacian kernel function. The supervised methods Turki et al. use after cleaning the GRN includes SVMs and deep learning approaches, such as a DNN and a deep belief network. The latter two outperform the unsupervised state-of-the-art baseline, although failed to outperform the linear SVM-based approach.
 
 
