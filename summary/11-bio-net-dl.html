@@ -226,8 +226,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gene-regulatory-networks">
-     Gene Regulatory Networks
+    <a class="reference internal nav-link" href="#gene-regulatory-networks-grn">
+     Gene Regulatory Networks (GRN)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -243,9 +243,21 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gnns">
-   GNNs
+  <a class="reference internal nav-link" href="#graph-embeddings-and-gnns">
+   Graph Embeddings and GNNs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#development">
+     Development
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#application-in-biology">
@@ -293,7 +305,7 @@
               <div>
                 
   <div class="section" id="biological-networks-and-deep-learning">
-<h1>Biological networks and deep learning<a class="headerlink" href="#biological-networks-and-deep-learning" title="Permalink to this headline">¶</a></h1>
+<span id="bio-net-dl"></span><h1>Biological networks and deep learning<a class="headerlink" href="#biological-networks-and-deep-learning" title="Permalink to this headline">¶</a></h1>
 <p>[<a class="reference external" href="https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/bio-net-dl.pdf">PDF</a>] [<a class="reference external" href="https://doi.org/10.1093/bib/bbaa257">DOI</a>] Muzio, Giulia, Leslie O’Bray, and Karsten Borgwardt. “Biological network analysis with deep learning.” Briefings in bioinformatics 22, no. 2 (2021): 1515-1530.</p>
 <div class="section" id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
@@ -318,7 +330,7 @@
 </div>
 <div class="section" id="biological-networks">
 <h2>Biological Networks<a class="headerlink" href="#biological-networks" title="Permalink to this headline">¶</a></h2>
-<p>necessity</p>
+<p>Research necessity</p>
 <ul class="simple">
 <li><p>DNA, RNA, proteins, and metabolites have crucial roles in the molecular mechanism of the cellular processes underlying life</p></li>
 <li><p>Stying their <strong>structure</strong> and <strong>interaction</strong> is fundamental for</p>
@@ -331,7 +343,7 @@
 <p>It is possible to define biological networks at different levels of detail.</p>
 <div class="section" id="protein-protein-interaction-networks-ppi">
 <h3>Protein-Protein Interaction Networks (PPI)<a class="headerlink" href="#protein-protein-interaction-networks-ppi" title="Permalink to this headline">¶</a></h3>
-<p>structure</p>
+<p>Structure</p>
 <ul class="simple">
 <li><p>node: proteins</p></li>
 <li><p>edge: interaction among proteins</p>
@@ -345,19 +357,14 @@
 <li><p>node classification: predicting the unknown function of a protein based on the functions of its neighbors in a PPI network.</p></li>
 </ul>
 </div>
-<div class="section" id="gene-regulatory-networks">
-<h3>Gene Regulatory Networks<a class="headerlink" href="#gene-regulatory-networks" title="Permalink to this headline">¶</a></h3>
-<p>Definitions</p>
-<ul class="simple">
-<li><p>gene expression: the set of processes which leads to generating proteins from the DNA sequence</p></li>
-</ul>
-<p>Regulation mechanisms occur at different stages of protein production from DNA (transcription, translation, splicing phases.)</p>
+<div class="section" id="gene-regulatory-networks-grn">
+<h3>Gene Regulatory Networks (GRN)<a class="headerlink" href="#gene-regulatory-networks-grn" title="Permalink to this headline">¶</a></h3>
+<p>Gene expression is the set of processes which leads to generating proteins from the DNA sequence. Regulation mechanisms occur at different stages of protein production from DNA (transcription, translation, splicing phases.)</p>
 <p>Structure</p>
 <ul class="simple">
 <li><p>node represents a gene</p></li>
 <li><p>a directed link among two genes implies that one gene directly regulates the expression of the other without mediation from other genes</p></li>
 </ul>
-<p>Qs: multiple to one? one to multiple? multiple to multiple??</p>
 <p>Tasks</p>
 <ul class="simple">
 <li><p>link prediction: which genes regulate the expression of another?</p></li>
@@ -386,9 +393,10 @@
 </ul>
 </div>
 </div>
-<div class="section" id="gnns">
-<h2>GNNs<a class="headerlink" href="#gnns" title="Permalink to this headline">¶</a></h2>
-<p>Overview from embeddings to GNN</p>
+<div class="section" id="graph-embeddings-and-gnns">
+<h2>Graph Embeddings and GNNs<a class="headerlink" href="#graph-embeddings-and-gnns" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>recurrent GNNs [84, 85]</p>
 <ul>
@@ -411,7 +419,9 @@
 </li>
 <li><p>graph GCNs: building blocks of many other GNN architectures</p></li>
 </ul>
-<p>Development</p>
+</div>
+<div class="section" id="development">
+<h3>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Spectral methods, first introduced by Bruna et al. [93] and later Defferrard et al. [94], build a convolution by creating a <strong>spectral filter</strong> defined in the Fourier domain using the graph Laplacian.</p>
 <ul>
@@ -441,6 +451,7 @@
 <li><p>message passing: Gilmer et al. [36]</p></li>
 <li><p>WL kernel: The adaptations in GCNs can therefore be seen as a differentiable and continuous extension of the Weisfeiler–Lehman algorithm and kernel</p></li>
 </ul>
+</div>
 </div>
 <div class="section" id="application-in-biology">
 <h2>Application in Biology<a class="headerlink" href="#application-in-biology" title="Permalink to this headline">¶</a></h2>
