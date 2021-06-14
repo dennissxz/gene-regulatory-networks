@@ -8,7 +8,7 @@ A gene that plays a role in regulating gene expression at transcription stage is
 
 ## Problem Formulation
 
-TFs and targets can be represented by a bipartite graph $G = (V_{TF}, V_{target}, E)$, where $V_{TF}$ is the vertex set of TFs and $V_{target}$ is the vertex set of targets. If there is an regulatory relation (activatory or inhibitory) between a TF $v_{TF}$ and a target $v_{target}$, then there is a directed edge $e(v_{TF}, v_{target})$ between them. Such graphical representation of the gene regulatory relationships is called a gene regulatory network (GRN). Note that it is possible to have an edge between two TFs, and self-loops.
+TFs and targets can be represented by a bipartite graph $G = (V_{TF}, V_{target}, E)$, where $V_{TF}$ is the vertex setd of TFs and $V_{target}$ is the vertex set of targets. If there is an regulatory relation (activatory or inhibitory) between a TF $v_{TF}$ and a target $v_{target}$, then there is a directed edge $e(v_{TF}, v_{target})$ between them. Such graphical representation of the gene regulatory relationships is called a gene regulatory network (GRN). Note that it is possible to have an edge between two TFs, and self-loops.
 
 For each gene $i$, the vertex attribute vector $\boldsymbol{x}_i \in \mathbb{R} ^m$ typically consists of RNA relative expression levels measured for that gene over a compendium of $m$ experiments, e.g. changes in pH, growing media, heat, oxygen concentrations, and genetic composition. The attribute vector can be time-series as well.
 
