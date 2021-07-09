@@ -22,7 +22,7 @@ Results:
 - However, for interventional data, BNs outperform GGMs and RNs, especially when taking the edge directions rather than just the skeletons of the graphs into account. This suggests that the higher computational costs of inference with BNs over GGMs and RNs are not justified when using only passive observations, but that active interventions in the form of gene knockouts and over-expressions
 are required to exploit the full potential of BNs.
 
-Data, software and supplementary material are available from http://www.bioss.sari.ac.uk/staff/adriano/research.html.
+Data, software and supplementary material are available from http://www.bioss.sari.ac.uk/staff/adriano/research.html. (Page not found)
 
 ## Methods
 
@@ -141,9 +141,8 @@ To avoid the perturbing influence of additional decision factors, e.g. related t
 
 For BNs
 - Applying the Gaussian assumption to BNs, with the normalWishart distribution as a conjugate prior on the parameters, the integral in (4) has a closed-form solution, referred to as the BGe score.
-- we followed Friedman and Koller (2003) and chose a distribution that is uniform over parent cardinalities subject to a fan-in restriction of 3 (??)
-- We carried out MCMC over node orders, as proposed in Friedman
-and Koller (2003).
+- We followed Friedman and Koller (2003) and chose a distribution that is uniform over parent cardinalities subject to a fan-in restriction of 3 (??)
+- We carried out MCMC over node orders, as proposed in Friedman and Koller (2003).
 
 For RNs
 - we computed the pairwise node associations with the Pearson correlation
@@ -156,11 +155,25 @@ and Strimmer (2005b), choosing a diagonal matrix as the shrinkage target. Note t
 
 ### Metrics
 
+- Undirected graph evaluation (UGE) discards the information about the edge directions altogether. The original and learned networks are replaced by their **skeletons**, where the skeleton is defined as the network in which two nodes are connected by an undirected edge whenever they are connected by any type of edge.
+- Directed graph evaluation (DGE), compares the predicted network with the original directed graph. A predicted undirected edge is interpreted as the superposition of two directed edges, pointing in opposite directions.
+
+- AUC: Each of the three reverse engineering methods compared in our study leads to a matrix of scores associated with the edges in a network. These scores are of different nature: correlation coefficients for RNs, partial correlation coefficients for GGMs and marginal posterior probabilities for BNs. All three scores define a ranking of the edges. Hence, we can plot ROC curve and compute AUC. However, AUC does not lead to a specific network prediction.
+
+- TP: Select a threshold from which a specific network prediction is obtained. Scha¨fer and Strimmer (2005a) discuss a method for converting the (partial) correlation coefficients of RNs and GGMs into q-values [i.e. p-values corrected for multiple testing; see Storey and Tibshirani (2003)] and ‘posterior probabilities’. We chose the threshold such that it led to a fixed count of five FPs. This procedure is guaranteed to compare the competing methods at the same operation point on the ROC curves, and the evaluation can therefore simply be based on the **TP** counts.
 
 
-GGMs and BNs potentially distinguish between direct and indirect interactions and therefore provide a more powerful modelling approach than RNs.
+### Comparison
 
-BNs have the potential to present a more refined picture of interactions among nodes than GGMs owing to the directed nature of the edges.
+- GGMs and BNs potentially distinguish between direct and indirect interactions and therefore provide a more powerful modelling approach than RNs.
+
+- BNs have the potential to present a more refined picture of interactions among nodes than GGMs owing to the directed nature of the edges.
+
+- Dependence on the noise level: when increasing the noise level, the performance with BNs first increases, and then decreases.
+
+- BNs and GGMs tend to outperform RNs, but the difference is less pronounced for the non-linear simulated data (Netbuilder) and the measured protein concentrations (cytometry experiments) than for Gaussian data. Also, there is insufficient evidence for any significant difference between BNs and GGMs on observational data.
+
+- BNs outperform GGMs and RNs when taking the edge directions into account. This suggests that the higher computational costs of inference with BNs over GGMs and RNs are not justified for passive observations, but that active interventions in the form of gene knockouts and over-expressions are required to exploit the full potential of BNs
 
 ## Reference
 
