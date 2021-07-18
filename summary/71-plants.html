@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Paper Summary &#8212; Inference for Gene Regulartory Networks</title>
+    <title>For plants &#8212; Inference for Gene Regulartory Networks</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Biological networks and deep learning" href="11-bio-net-dl.html" />
-    <link rel="prev" title="Datasets" href="../intro/31-datasets.html" />
+    <link rel="next" title="GRGNN" href="81-grgnn.html" />
+    <link rel="prev" title="Compare RN GNN BN" href="61-grn-ggm.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -113,7 +113,7 @@
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="00-summary.html">
    Paper Summary
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -121,7 +121,7 @@
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="11-bio-net-dl.html">
      Biological networks and deep learning
@@ -142,8 +142,8 @@
      Compare RN GNN BN
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="71-plants.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      For plants
     </a>
    </li>
@@ -195,7 +195,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/summary/00-summary.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/summary/71-plants.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -220,6 +220,46 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statistic-based">
+   Statistic based
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-series">
+     Time-series
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-time-series">
+     Non-time series
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-based">
+   Machine Learning-Based
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset">
+   Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ml-based">
+   ML based
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -228,9 +268,76 @@
         
               <div>
                 
-  <div class="section" id="paper-summary">
-<h1>Paper Summary<a class="headerlink" href="#paper-summary" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <div class="section" id="for-plants">
+<h1>For plants<a class="headerlink" href="#for-plants" title="Permalink to this headline">¶</a></h1>
+<p>[<a class="reference external" href="https://www.frontiersin.org/articles/10.3389/fpls.2018.01770/full">DOI</a>] Mochida, Keiichi, Satoru Koda, Komaki Inoue, and Ryuei Nishii. “Statistical and machine learning approaches to predict gene regulatory networks from transcriptome datasets.” Frontiers in plant science 9 (2018): 1770.</p>
+<p>This review summarizes the recent advancements in the computational inference of GRNs, based on large-scale transcriptome sequencing datasets of model <strong>plants</strong> and crops. We highlight strategies to select contextual genes for GRN inference, and statistical and ML-based methods for inferring GRNs based on transcriptome datasets from plants. Furthermore, we discuss the challenges and opportunities for the elucidation of GRNs based on large-scale datasets obtained from emerging transcriptomic applications, based on population-scale, single-cell level, or lifecourse analyses.</p>
+<p>Related work</p>
+<ul class="simple">
+<li><p>Constructing an initial network by assumption-free methods, such as information theory-based methods or co-expression analysis, would be feasible to minimize false-positive edges with high computational efficiency in GRN inference, enabling us to apply statistical or ML-based methods to examine causalities between genes with respect to each local subnetwork in the initial networks (Liu et al., 2016).</p></li>
+<li><p>To predict the drought stress-responsive GRN in sunflower, Marchand et al. (2014) selected 145 genes that were co-expressed under drought stress conditions, and subsequently used a Gaussian graphical modeling method and a Random Forest method to infer the robust edges (Marchand et al., 2014).</p></li>
+</ul>
+<div class="section" id="statistic-based">
+<h2>Statistic based<a class="headerlink" href="#statistic-based" title="Permalink to this headline">¶</a></h2>
+<p>Since time-series datasets contain dynamic information, which assists us in understanding temporal dynamics of various biological processes, statistics-based approaches have been often applied to time-series transcriptome datasets to infer GRNs.</p>
+<div class="section" id="time-series">
+<h3>Time-series<a class="headerlink" href="#time-series" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Autoregressive exogenous variable (ARX) model</p>
+<ul>
+<li><p>a kind of state-space model used to describe time-varying processes observed in time-series datasets</p></li>
+<li><p>can be used in combination with sparse estimation algorithms</p></li>
+</ul>
+</li>
+<li><p>Fused Lasso</p>
+<ul>
+<li><p>a sparse estiamtion algorithm</p></li>
+<li><p>used to reconstruct GRNs with time-series expression datasets (Omranian 2016)</p></li>
+</ul>
+</li>
+<li><p>Group SCAD (Koda 2017)</p></li>
+<li><p>Inferelator (Greenfield 2013)</p></li>
+<li><p>GENIST (de Luis Balaguer 2017)</p>
+<ul>
+<li><p>based on a dynamic Bayesian network</p></li>
+<li><p>outperformed with datasets used in DREAM 4 challenge 2.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="non-time-series">
+<h3>Non-time series<a class="headerlink" href="#non-time-series" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Context Likelihood of Relatedness (Faith 2007)</p>
+<ul>
+<li><p>a mutual information based approach</p></li>
+</ul>
+</li>
+<li><p>Partial response coefficients (Blum 2018)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="machine-learning-based">
+<h2>Machine Learning-Based<a class="headerlink" href="#machine-learning-based" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>MinReg (Guo 2016)</p>
+<ul>
+<li><p>data: Various biological and experimental conditions of Fusarium graminearum</p></li>
+</ul>
+</li>
+<li><p>GENIE3 (Huynh-Thu 2010)</p>
+<ul>
+<li><p>a tree-based algorithm</p></li>
+</ul>
+</li>
+<li><p>Dynamic factor graph (DFG models)</p></li>
+</ul>
+</div>
+<div class="section" id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="ml-based">
+<h2>ML based<a class="headerlink" href="#ml-based" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -259,8 +366,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../intro/31-datasets.html" title="previous page">Datasets</a>
-    <a class='right-next' id="next-link" href="11-bio-net-dl.html" title="next page">Biological networks and deep learning</a>
+    <a class='left-prev' id="prev-link" href="61-grn-ggm.html" title="previous page">Compare RN GNN BN</a>
+    <a class='right-next' id="next-link" href="81-grgnn.html" title="next page">GRGNN</a>
 
         </div>
         

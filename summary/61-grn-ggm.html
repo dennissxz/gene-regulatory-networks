@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compare RN GNN BN &#8212; Inference for Gene Regulartory Networks</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="For plants" href="71-plants.html" />
+    <link rel="prev" title="A Denoise Algorithm" href="53-grn-denoise.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Inference for Gene Regulartory Networks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Inference for Gene Regulartory Networks
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro/00-intro.html">
+   Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/11-grn.html">
+     Gene Regulatory Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro/31-datasets.html">
+     Datasets
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="00-summary.html">
+   Paper Summary
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11-bio-net-dl.html">
+     Biological networks and deep learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="31-grn-ssu.html">
+     Sup, semi-sup, unsup inference
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="53-grn-denoise.html">
+     A Denoise Algorithm
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Compare RN GNN BN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="71-plants.html">
+     For plants
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="81-grgnn.html">
+     GRGNN
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/summary/61-grn-ggm.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#abstract">
+   Abstract
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#methods">
+   Methods
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rns">
+     RNs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ggms">
+     GGMs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bayesian-networks">
+     Bayesian Networks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datasets">
+   Datasets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#observational">
+     Observational
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simulation">
+     Simulation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#linear-gaussian-distribution">
+       Linear Gaussian Distribution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#realistic-non-linear-simulation">
+       Realistic Non-linear Simulation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-size">
+       Data size
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#implementation">
+       Implementation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   Results
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metrics">
+     Metrics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison">
+     Comparison
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="compare-rn-gnn-bn">
+<h1>Compare RN GNN BN<a class="headerlink" href="#compare-rn-gnn-bn" title="Permalink to this headline">¶</a></h1>
+<p>[<a class="reference external" href="https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-ggm.pdf">PDF</a>][<a class="reference external" href="https://academic.oup.com/bioinformatics/article/22/20/2523/218029">DOI</a>] Werhli, A. V., Grzegorczyk, M., &amp; Husmeier, D. (2006). Comparative evaluation of reverse engineering gene regulatory networks with relevance networks, graphical Gaussian models and Bayesian networks. Bioinformatics, 22(20), 2523-2531.</p>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>Compare the accuracy of reconstructing gene regulatory networks with three different modelling and inference paradigms:</p>
+<ol class="simple">
+<li><p>Relevance networks (RNs): pairwise association scores <strong>independent</strong> of the remaining network;</p></li>
+<li><p>graphical Gaussian models (GGMs): undirected graphical models with <strong>constraint-based</strong> inference</p></li>
+<li><p>Bayesian networks (BNs): directed graphical models with <strong>score-based</strong> inference</p></li>
+</ol>
+<p>Dataset: Raf pathway, a cellular signalling network describing the interaction of 11 phosphorylated proteins and phospholipids in human immune system cells.</p>
+<ul class="simple">
+<li><p>lab data from cytometry experiments</p></li>
+<li><p>simulated data from gold-standard network</p></li>
+<li><p>passive observations with active interventions ??</p></li>
+</ul>
+<p>Results:</p>
+<ul class="simple">
+<li><p>On Gaussian observational data, BNs and GGMs were found to outperform RNs.</p></li>
+<li><p>The difference in performance was not significant for the non-linear simulated data and the cytoflow data,though.</p></li>
+<li><p>Also, we did not observe a significant difference between BNs and GGMs on observational data in general.</p></li>
+<li><p>However, for interventional data, BNs outperform GGMs and RNs, especially when taking the edge directions rather than just the skeletons of the graphs into account. This suggests that the higher computational costs of inference with BNs over GGMs and RNs are not justified when using only passive observations, but that active interventions in the form of gene knockouts and over-expressions
+are required to exploit the full potential of BNs.</p></li>
+</ul>
+<p>Data, software and supplementary material are available from http://www.bioss.sari.ac.uk/staff/adriano/research.html. (Page not found)</p>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rns">
+<h3>RNs<a class="headerlink" href="#rns" title="Permalink to this headline">¶</a></h3>
+<p>The method of RNs, proposed by Butte and Kohane (2000, 2003), is based on
+pairwise association scores <strong>indepdent</strong> of the remaining network. These scores are computed for all pairs of nodes from the signals associated with the nodes. The authors propose the mutual information and the Pearson correlation as appropriate association scores.</p>
+<ul class="simple">
+<li><p>Pros: This approach is straightforward to implement, and its computational costs are comparatively low. The principled disadvantage of RNs,</p></li>
+<li><p>Cons: however, is that the inference of an interaction between two nodes is not done in the context of the whole system. Consequently, we expect that RNs are not particularly powerful in distinguishing between direct (Fig. 1, left) and indirect (Fig. 1, centre) interactions.</p></li>
+</ul>
+<div class="figure align-default" id="interaction-pattern">
+<a class="reference internal image-reference" href="../_images/interaction-pattern.png"><img alt="" src="../_images/interaction-pattern.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Interaction patterns</span><a class="headerlink" href="#interaction-pattern" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="ggms">
+<h3>GGMs<a class="headerlink" href="#ggms" title="Permalink to this headline">¶</a></h3>
+<p>GGMs are <strong>undirected</strong> probabilistic graphical models that allow the identification of <strong>conditional independence</strong> relations among the nodes under the assumption of a multivariate Gaussian distribution of the data. The inference of GGMs is based on a (stable) estimation of the <strong>covariance matrix</strong> of this distribution.</p>
+<p>A high correlation coefficient between two nodes may indicate</p>
+<ul class="simple">
+<li><p>a direct interaction (Fig. 1, left).</p></li>
+<li><p>an indirect interaction (Fig. 1, centre right)</p></li>
+<li><p>or a joint regulation by a common (possibly unknown) factor (Fig. 1, centre left).
+However, only the direct interactions are of interest to the construction of a regulatory network.</p></li>
+</ul>
+<p>The strengths of these direct interactions are measured by the partial correlation coefficient <span class="math notranslate nohighlight">\(\rho_{ik}\)</span>, which describes the correlation between nodes <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_k\)</span> conditional on all the other nodes in the network. It can be computed by the inverse of the covariance matrix <span class="math notranslate nohighlight">\(\boldsymbol{C}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\rho_{i k}=-\frac{C_{i k}^{-1}}{\sqrt{C_{i i}^{-1} C_{k k}^{-1}}}
+\]</div>
+<p>To infer a GGM, one typically employs the following procedure. From the given data, the empirical covariance matrix is computed, inverted and the partial correlations <span class="math notranslate nohighlight">\(\rho_{ik}\)</span> are computed from the equation above. The distribution of <span class="math notranslate nohighlight">\(\left\vert \rho_{ik} \right\vert\)</span> is inspected, and edges <span class="math notranslate nohighlight">\((i, k)\)</span> corresponding to significantly small values of <span class="math notranslate nohighlight">\(\left\vert \rho_{ik} \right\vert\)</span> are removed from the graph. The critical step in the application of this procedure is the stable estimation of the covariance matrix and its inverse.</p>
+<p>In this paper we uses a novel covariance matrix estimator regularized by a shrinkage approach (Schafer and Strimmer, 2005a)</p>
+</div>
+<div class="section" id="bayesian-networks">
+<h3>Bayesian Networks<a class="headerlink" href="#bayesian-networks" title="Permalink to this headline">¶</a></h3>
+<p>BNs are <strong>directed</strong> graphical models for representing probabilistic relationships between multiple interacting entities. Formally, a BN is defined by a graphical structure <span class="math notranslate nohighlight">\(M\)</span>, a family of (conditional) probability distributions <span class="math notranslate nohighlight">\(F\)</span>, and their parameters <span class="math notranslate nohighlight">\(q\)</span>, which together specify a joint distribution over a set of random variables of interest.</p>
+<p>The graphical structure <span class="math notranslate nohighlight">\(M\)</span> of a BN has to be a directed acyclic graph (DAG), i.e. a network without any directed cycles. This structure defines a unique rule for expanding the joint probability in terms of simpler conditional probabilities. Let <span class="math notranslate nohighlight">\(X_1, X_2, \ldots, X_n\)</span> be a set of random variables represented by the nodes <span class="math notranslate nohighlight">\(i \in \left\{ 1, 2, \ldots, n \right\}\)</span> in the graph, define <span class="math notranslate nohighlight">\(\operatorname{pa} [i]\)</span> to be the parents of node <span class="math notranslate nohighlight">\(X_i\)</span>, and let <span class="math notranslate nohighlight">\(X_{ \operatorname{pa}[i] }\)</span> represent the set of random variables associated with <span class="math notranslate nohighlight">\(\operatorname{pa}[i]\)</span>. Then the joint distribution can be factorized as</p>
+<div class="math notranslate nohighlight">
+\[
+P\left(X_{1}, \ldots, X_{n}\right)=\prod_{i=1}^{n} P\left(X_{i} \mid X_{\mathrm{pa}[i]}\right)
+\]</div>
+<p>When adopting a score-based approach to inference, our objective is to sample model structures <span class="math notranslate nohighlight">\(M\)</span> from the posterior distribution</p>
+<div class="math notranslate nohighlight">
+\[
+P(M \mid D) \propto P(D \mid M) P(M) \qquad (3)
+\]</div>
+<p>which requires a marginalization over the parameters <span class="math notranslate nohighlight">\(q\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+P(D \mid M)=\int P(D \mid q, M) P(q \mid M) \mathrm{~d} q \qquad (4)
+\]</div>
+<p>If certain regulatory conditions, discussed in Heckerman (1999), are satisfied and the data are complete, then the integral in (4) is analytically tractable. Two function families F that satisfy these conditions are</p>
+<ul class="simple">
+<li><p>the multinomial distribution with a Dirichlet prior Heckerman et al., 1995)</p></li>
+<li><p>and the linear Gaussian distribution with a normal-Wishart prior (Geiger and Heckerman, 1994).</p></li>
+</ul>
+<p>The resulting scores P(D j M) are usually referred to as the <strong>BDe</strong> (discretized data, multinomial distribution) or the <strong>BGe</strong> (continuous data, linear Gaussian distribution) score.</p>
+<p>Direct sampling from the posterior distribution (3) is analytically intractable, though. Hence, a Markov Chain Monte Carlo (MCMC) scheme is adopted (Madigan and York, 1995), for which an efficient proposal algorithm based on node orders has recently been proposed (Friedman and Koller, 2003).</p>
+</div>
+</div>
+<div class="section" id="datasets">
+<h2>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h2>
+<p>Raf is a critical signalling protein involved in regulating cellular proliferation in human immune system cells. The deregulation of the Raf pathway can lead to carcinogenesis, and the pathway has therefore been extensively studied in the literature.</p>
+<div class="figure align-default" id="raf-pathway">
+<a class="reference internal image-reference" href="../_images/Raf-pathway.png"><img alt="" src="../_images/Raf-pathway.png" style="width: 50%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Raf pathway</span><a class="headerlink" href="#raf-pathway" title="Permalink to this image">¶</a></p>
+</div>
+<p>Uses four types of data {passive observation, active interventions} <span class="math notranslate nohighlight">\(\times\)</span> {lab data, simulated data}.</p>
+<div class="section" id="observational">
+<h3>Observational<a class="headerlink" href="#observational" title="Permalink to this headline">¶</a></h3>
+<p>Sachs et al. (2005) have applied intracellular multicolour flow cytometry experiments to quantitatively measure protein expression levels. Data were collected after a series of stimulatory cues and inhibitory interventions targeting specific proteins in the Raf pathway.</p>
+</div>
+<div class="section" id="simulation">
+<h3>Simulation<a class="headerlink" href="#simulation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="linear-gaussian-distribution">
+<h4>Linear Gaussian Distribution<a class="headerlink" href="#linear-gaussian-distribution" title="Permalink to this headline">¶</a></h4>
+<p>A simple synthetic way of generating data from the gold standard network of Figure 2 is to sample them from a linear-Gaussian distribution. The random variable <span class="math notranslate nohighlight">\(X_i\)</span> denoting the expression of node <span class="math notranslate nohighlight">\(i\)</span> is distributed according to</p>
+<div class="math notranslate nohighlight">
+\[
+X_{i} \sim N\left(\sum_{k} w_{i k} x_{k}, \sigma\right) \qquad (5)
+\]</div>
+<p>We set the standard deviation to <span class="math notranslate nohighlight">\(\sigma = 0.1\)</span>, sampled the interaction strength <span class="math notranslate nohighlight">\(\left\{ w_{ik} \right\}\)</span> from the uniform distribution over the interval <span class="math notranslate nohighlight">\([0.5,2]\)</span>, and randomly varied the sign of <span class="math notranslate nohighlight">\(w_{ik}\)</span>.</p>
+<p>For simulating (noisy) interventions, we replaced the conditional distribution (5) by the following
+unconditional distributions.</p>
+<ul class="simple">
+<li><p>For inhibitions, we sampled <span class="math notranslate nohighlight">\(X_i\)</span> from a zero-mean Gaussian distribution <span class="math notranslate nohighlight">\(\mathcal{N} (0,\sigma)\)</span>.</p></li>
+<li><p>For activations, we sampled <span class="math notranslate nohighlight">\(X_i\)</span> from the tails of the empirical distribution of <span class="math notranslate nohighlight">\(X_i\)</span>, beyond the
+2.5 and the 97.5 percentiles.</p></li>
+</ul>
+</div>
+<div class="section" id="realistic-non-linear-simulation">
+<h4>Realistic Non-linear Simulation<a class="headerlink" href="#realistic-non-linear-simulation" title="Permalink to this headline">¶</a></h4>
+<p>A more realistic simulation of data typical of signals measured in molecular biology is the following approach. The expression of a gene is controlled by the interaction of various transcription factors, which may have an inhibitory or activating influence. Ignoring time delays inherent in transcription and translation, these interactions can be compared with <strong>enzyme–substrate reactions in organic chemistry</strong>. From chemical kinetics it is known that the concentrations of the molecules involved in these reactions can be described by a system of ordinary differential equations (ODEs) (Atkins, 1986). Assuming <strong>equilibrium</strong> and adopting a steady-state approximation, it is possible to derive a set of closed-form equations that describe the product concentrations as non-linear (sigmoidal) functions of combinations of substrates.</p>
+<p>To model stochastic influences, we subjected all nodes to additive Gaussian noise, and repeated the simulations for three different noise levels. Interventions were simulated by drawing values from a peaked Gaussian distribution (s ¼ 0.01) around the maximum (activation) and minimum (inhibition) values of the domain.</p>
+</div>
+<div class="section" id="data-size">
+<h4>Data size<a class="headerlink" href="#data-size" title="Permalink to this headline">¶</a></h4>
+<p>Flow cytometry allows the simultaneous measurement of the protein expression levels in thousands of individual cells. Sachs et al. (2005) have shown that for such a large dataset, it is possible to reverse engineer a network that is very similar to the known gold standard Raf signalling network. However, for many other types of current postgenomic data, such abundance of data is not available. We therefore sampled the data of Sachs et al. (2005) down to 100 data points; this is a representative figure for the typical number of different experimental conditions in current microarray experiments.</p>
+</div>
+<div class="section" id="implementation">
+<h4>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h4>
+<p>To avoid the perturbing influence of additional decision factors, e.g. related to data discretization, and to enable a fair comparison with GGMs, we use the Gaussian assumption throughout. To minimize the deviation from this assumption, we subjected the data to a quantile normalization, ensuring that all marginal distributions of individual nodes were Normal.</p>
+<p>For BNs</p>
+<ul class="simple">
+<li><p>Applying the Gaussian assumption to BNs, with the normalWishart distribution as a conjugate prior on the parameters, the integral in (4) has a closed-form solution, referred to as the BGe score.</p></li>
+<li><p>We followed Friedman and Koller (2003) and chose a distribution that is uniform over parent cardinalities subject to a fan-in restriction of 3 (??)</p></li>
+<li><p>We carried out MCMC over node orders, as proposed in Friedman and Koller (2003).</p></li>
+</ul>
+<p>For RNs</p>
+<ul class="simple">
+<li><p>we computed the pairwise node associations with the Pearson correlation</p></li>
+</ul>
+<p>For GGMs,</p>
+<ul class="simple">
+<li><p>We computed the covariance matrix in GGMs with the shrinkage approach proposed by Scha¨fer
+and Strimmer (2005b), choosing a diagonal matrix as the shrinkage target. Note that this target corresponds to the empty prior network; hence the effect of shrinkage is equivalent to the selected prior for the computation of the BGe score in BNs.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="metrics">
+<h3>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Undirected graph evaluation (UGE) discards the information about the edge directions altogether. The original and learned networks are replaced by their <strong>skeletons</strong>, where the skeleton is defined as the network in which two nodes are connected by an undirected edge whenever they are connected by any type of edge.</p></li>
+<li><p>Directed graph evaluation (DGE), compares the predicted network with the original directed graph. A predicted undirected edge is interpreted as the superposition of two directed edges, pointing in opposite directions.</p></li>
+<li><p>AUC: Each of the three reverse engineering methods compared in our study leads to a matrix of scores associated with the edges in a network. These scores are of different nature: correlation coefficients for RNs, partial correlation coefficients for GGMs and marginal posterior probabilities for BNs. All three scores define a ranking of the edges. Hence, we can plot ROC curve and compute AUC. However, AUC does not lead to a specific network prediction.</p></li>
+<li><p>TP: Select a threshold from which a specific network prediction is obtained. Scha¨fer and Strimmer (2005a) discuss a method for converting the (partial) correlation coefficients of RNs and GGMs into q-values [i.e. p-values corrected for multiple testing; see Storey and Tibshirani (2003)] and ‘posterior probabilities’. We chose the threshold such that it led to a fixed count of five FPs. This procedure is guaranteed to compare the competing methods at the same operation point on the ROC curves, and the evaluation can therefore simply be based on the <strong>TP</strong> counts.</p></li>
+</ul>
+</div>
+<div class="section" id="comparison">
+<h3>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>GGMs and BNs potentially distinguish between direct and indirect interactions and therefore provide a more powerful modelling approach than RNs.</p></li>
+<li><p>BNs have the potential to present a more refined picture of interactions among nodes than GGMs owing to the directed nature of the edges.</p></li>
+<li><p>Dependence on the noise level: when increasing the noise level, the performance with BNs first increases, and then decreases.</p></li>
+<li><p>BNs and GGMs tend to outperform RNs, but the difference is less pronounced for the non-linear simulated data (Netbuilder) and the measured protein concentrations (cytometry experiments) than for Gaussian data. Also, there is insufficient evidence for any significant difference between BNs and GGMs on observational data.</p></li>
+<li><p>BNs outperform GGMs and RNs when taking the edge directions into account. This suggests that the higher computational costs of inference with BNs over GGMs and RNs are not justified for passive observations, but that active interventions in the form of gene knockouts and over-expressions are required to exploit the full potential of BNs</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>GRN with BNs, Friedman et al., 2000</p></li>
+<li><p>RNs (Butte and Kohane, 2000, 2003)</p></li>
+<li><p>GNNs (Schafer and Strimmer, 2005a)</p></li>
+<li><p>GGM vs BN on synthetic data (Pournara (2005)). This paper</p>
+<ul>
+<li><p>improved BN learning, MCMC rather than optimization scheme</p></li>
+<li><p>improved GGM, a more recent algo rather than PC algo</p></li>
+<li><p>include RNs, low computational cost</p></li>
+<li><p>use Raf pathway rather than random GRN.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./summary"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="53-grn-denoise.html" title="previous page">A Denoise Algorithm</a>
+    <a class='right-next' id="next-link" href="71-plants.html" title="next page">For plants</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dennis Zheng<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
