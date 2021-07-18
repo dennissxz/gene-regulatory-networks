@@ -1,8 +1,6 @@
 # For plants
 
-[[DOI](https://www.frontiersin.org/articles/10.3389/fpls.2018.01770/full)] Mochida, Keiichi, Satoru Koda, Komaki Inoue, and Ryuei Nishii. "Statistical and machine learning approaches to predict gene regulatory networks from transcriptome datasets." Frontiers in plant science 9 (2018): 1770.
-
-
+[[PDF](https://nbviewer.jupyter.org/github/dennissxz/gene-regulatory-networks/blob/main/reading/grn-plant.pdf)][[DOI](https://www.frontiersin.org/articles/10.3389/fpls.2018.01770/full)] Mochida, Keiichi, Satoru Koda, Komaki Inoue, and Ryuei Nishii. "Statistical and machine learning approaches to predict gene regulatory networks from transcriptome datasets." Frontiers in plant science 9 (2018): 1770.
 
 
 This review summarizes the recent advancements in the computational inference of GRNs, based on large-scale transcriptome sequencing datasets of model **plants** and crops. We highlight strategies to select contextual genes for GRN inference, and statistical and ML-based methods for inferring GRNs based on transcriptome datasets from plants. Furthermore, we discuss the challenges and opportunities for the elucidation of GRNs based on large-scale datasets obtained from emerging transcriptomic applications, based on population-scale, single-cell level, or lifecourse analyses.
