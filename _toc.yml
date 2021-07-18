@@ -10,4 +10,6 @@
     - file: summary/11-bio-net-dl
     - file: summary/31-grn-ssu
     - file: summary/53-grn-denoise
-    - file: summary/71-grgnn
+    - file: summary/61-grn-ggm
+    - file: summary/71-plants
+    - file: summary/81-grgnn
