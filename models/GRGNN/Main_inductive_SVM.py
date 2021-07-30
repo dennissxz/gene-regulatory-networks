@@ -28,12 +28,14 @@ parser = argparse.ArgumentParser(description='baseline SVM to compare with GRGNN
 parser.add_argument('--traindata-name', default='data3', help='train network name')
 parser.add_argument('--traindata-name2', default=None, help='train network name2')
 parser.add_argument('--testdata-name', default='data4', help='test network name')
-parser.add_argument('--max-train-num', type=int, default=100000, 
+parser.add_argument('--max-train-num', type=int, default=100000,
                     help='set maximum number of train links (to fit into memory)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
+parser.add_argument('--feature-num', type=int, default=4,
+                    help='feature num for debug')
 # Pearson correlation
 parser.add_argument('--embedding-dim', type=int, default=1,
                     help='embedding dimmension')
@@ -42,10 +44,10 @@ parser.add_argument('--pearson_net', type=float, default=0.8,
 # parser.add_argument('--pearson_net', type=int, default=3,
 #                     help='pearson correlation as the network')
 # model settings
-parser.add_argument('--hop', default=0, metavar='S', 
+parser.add_argument('--hop', default=0, metavar='S',
                     help='enclosing subgraph hop number, \
                     options: 1, 2,..., "auto"')
-parser.add_argument('--max-nodes-per-hop', default=None, 
+parser.add_argument('--max-nodes-per-hop', default=None,
                     help='if > 0, upper bound the # nodes per hop by subsampling')
 parser.add_argument('--use-embedding', action='store_true', default=False,
                     help='whether to use node2vec node embeddings')
@@ -76,6 +78,7 @@ args.file_dir = os.path.dirname(os.path.realpath('__file__'))
 # Human: top 745 are TF
 dreamTFdict={}
 dreamTFdict['data1']=195
+dreamTFdict['data2']=99
 dreamTFdict['data3']=334
 dreamTFdict['data4']=333
 dreamTFdict['Human']=745
@@ -94,7 +97,8 @@ if args.traindata_name is not None:
     # trainNet = np.load(args.file_dir+'/data/dream/'+trdata_name+'_mmatrix_'+str(args.mutual_net)+'.npy',allow_pickle=True).tolist()
     allx =trainGroup.toarray().astype('float32')
     #deal with the features:
-    trainAttributes = genenet_attribute(allx,dreamTFdict[trdata_name])   
+    # trainAttributes = genenet_attribute(allx,dreamTFdict[trdata_name])
+    trainAttributes = genenet_attribute_feature(allx,dreamTFdict[trdata_name],args.feature_num)
 
     # Prepare Testing
     testNet_ori = np.load(os.path.join(args.file_dir, 'data/dream/ind.{}.csc'.format(args.testdata_name)),allow_pickle=True)
@@ -103,11 +107,12 @@ if args.traindata_name is not None:
     # testNet = np.load(args.file_dir+'/data/dream/'+tedata_name+'_mmatrix_'+str(args.mutual_net)+'.npy',allow_pickle=True).tolist()
     allxt =testGroup.toarray().astype('float32')
     #deal with the features:
-    testAttributes = genenet_attribute(allxt,dreamTFdict[tedata_name])
+    # testAttributes = genenet_attribute(allxt,dreamTFdict[tedata_name])
+    testAttributes = genenet_attribute_feature(allxt,dreamTFdict[trdata_name],args.feature_num)
 
     # train_pos, train_neg, _, _ = sample_neg(trainNet_ori, 0.0, max_train_num=args.max_train_num)
     train_pos, train_neg, _, _ = sample_neg_TF(trainNet_ori, 0.0, TF_num=dreamTFdict[trdata_name], max_train_num=args.max_train_num)
-    
+
     #_, _, test_pos, test_neg = sample_neg(testNet_ori, 1.0, max_train_num=args.max_train_num)
     _, _, test_pos, test_neg = sample_neg_TF(testNet_ori, 1.0, TF_num=dreamTFdict[tedata_name], max_train_num=args.max_train_num)
     # test_pos, test_neg = sample_neg_all_TF(testNet_ori, TF_num=dreamTFdict[args.testdata_name])
@@ -127,13 +132,17 @@ if args.use_embedding:
     train_node_information = train_embeddings
     test_embeddings = generate_node2vec_embeddings(Atest, args.embedding_dim, True, test_neg) #?
     test_node_information = test_embeddings
-if args.use_attribute and trainAttributes is not None: 
+if args.use_attribute and trainAttributes is not None:
     if train_node_information is not None:
         train_node_information = np.concatenate([train_node_information, trainAttributes], axis=1)
         test_node_information = np.concatenate([test_node_information, testAttributes], axis=1)
     else:
         train_node_information = trainAttributes
         test_node_information = testAttributes
+
+print(f'training data shape: {train_node_information.shape}')
+print(f'test data shape: {test_node_information.shape}')
+
 
 train_graphs, test_graphs, train_labels, test_labels = links2subgraphsTranSVM(Atrain, Atest, train_pos, train_neg, test_pos, test_neg, args.hop, args.max_nodes_per_hop, train_node_information, test_node_information)
 
@@ -156,7 +165,7 @@ if args.traindata_name2 is not None:
     if args.use_embedding:
         train_embeddings2 = generate_node2vec_embeddings(Atrain2, args.embedding_dim, True, train_neg2) #?
         train_node_information2 = train_embeddings2
-    if args.use_attribute and trainAttributes2 is not None: 
+    if args.use_attribute and trainAttributes2 is not None:
         if train_node_information2 is not None:
             train_node_information2 = np.concatenate([train_node_information2, trainAttributes2], axis=1)
         else:
@@ -169,7 +178,9 @@ if args.traindata_name2 is not None:
         train_node_information = np.concatenate([train_node_information, train_node_information2], axis=0)
 print('# train: %d, # test: %d' % (len(train_graphs), len(test_graphs)))
 
+
 X=np.asarray(train_graphs)
+print('X shape', X.shape)
 y=np.asarray(train_labels)
 testx=np.asarray(test_graphs)
 true_y=np.asarray(test_labels)
@@ -207,4 +218,3 @@ tn, fp, fn, tp = confusion_matrix(true_y,pred).ravel()
 print(str(tp)+"\t"+str(fp)+"\t"+str(tn)+"\t"+str(fn))
 np.save('rf_true_y_'+args.testdata_name+'_all.npy',true_y)
 np.save('rf_y_score_'+args.testdata_name+'_all.npy',y_score)
-

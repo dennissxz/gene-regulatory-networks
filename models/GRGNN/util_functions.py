@@ -33,7 +33,7 @@ def generateTFattribute(dream_name):
         number = 333
     for i in np.arange(number):
         tfDict[i]=1
-    return tfDict    
+    return tfDict
 
 # Use all the gene expression features
 def geneexpression_attribute(allx, tfDict):
@@ -134,12 +134,12 @@ def genenet_attribute(allx,tfNum):
     # quantilPerAtt =np.concatenate([qu1Att,qu2Att,qu3Att,qu4Att,qu5Att,qu6Att,qu7Att,qu8Att,qu9Att,qu10Att],axis=1)
     # quantilValAtt =np.concatenate([minVal, qu1Val,qu2Val,qu3Val,qu4Val, qu5Val, qu6Val, qu7Val, qu8Val, qu9Val, maxVal],axis=1)
 
-    
+
     #5: TF or not, vital
     tfAttr = np.zeros((len(allx),1))
     for i in np.arange(tfNum) :
         tfAttr[i]=1.0
-    
+
     #2. PCA to 3 dimensions
     allx_ = StandardScaler().fit_transform(allx)
     pca = PCA(n_components=3)
@@ -153,9 +153,9 @@ def genenet_attribute(allx,tfNum):
 
     trainAttributes = np.concatenate([trainAttributes], axis=1)
     # trainAttributes = np.concatenate([trainAttributes, stdAtt, quantilPerAtt, quantilValAtt, tfAttr], axis=1)
-    
+
     #trainAttributes = np.concatenate([tfAttr], axis=1)
-    
+
     return trainAttributes
 
 # Search
@@ -222,12 +222,12 @@ def genenet_attribute_feature(allx,tfNum,searchNum):
     # quantilPerAtt =np.concatenate([qu1Att,qu2Att,qu3Att,qu4Att,qu5Att,qu6Att,qu7Att,qu8Att,qu9Att,qu10Att],axis=1)
     # quantilValAtt =np.concatenate([minVal, qu1Val,qu2Val,qu3Val,qu4Val, qu5Val, qu6Val, qu7Val, qu8Val, qu9Val, maxVal],axis=1)
 
-    
+
     #5: TF or not, vital
     tfAttr = np.zeros((len(allx),1))
     for i in np.arange(tfNum) :
         tfAttr[i]=1.0
-    
+
     #2. PCA to 3 dimensions
     allx_ = StandardScaler().fit_transform(allx)
     pca = PCA(n_components=3)
@@ -247,7 +247,7 @@ def genenet_attribute_feature(allx,tfNum,searchNum):
     # elif searchNum ==2:
     #     trainAttributes = np.concatenate([trainAttributes, minVal, maxVal, tfAttr], axis=1)
     # elif searchNum ==3:
-    #     trainAttributes = np.concatenate([trainAttributes, stdAtt, minVal, maxVal, tfAttr], axis=1)    
+    #     trainAttributes = np.concatenate([trainAttributes, stdAtt, minVal, maxVal, tfAttr], axis=1)
     # elif searchNum ==4:
     #     trainAttributes = np.concatenate([trainAttributes, quantilPerAtt, tfAttr], axis=1)
     # elif searchNum ==5:
@@ -255,7 +255,7 @@ def genenet_attribute_feature(allx,tfNum,searchNum):
     # elif searchNum ==6:
     #     trainAttributes = np.concatenate([trainAttributes, minVal, maxVal, quantilPerAtt, tfAttr], axis=1)
     # elif searchNum ==7:
-    #     trainAttributes = np.concatenate([trainAttributes, stdAtt, minVal, maxVal, quantilPerAtt, tfAttr], axis=1) 
+    #     trainAttributes = np.concatenate([trainAttributes, stdAtt, minVal, maxVal, quantilPerAtt, tfAttr], axis=1)
     # elif searchNum ==8:
     #     trainAttributes = trainAttributes
     # elif searchNum ==9:
@@ -263,7 +263,7 @@ def genenet_attribute_feature(allx,tfNum,searchNum):
     # elif searchNum ==10:
     #     trainAttributes = np.concatenate([trainAttributes, minVal, maxVal], axis=1)
     # elif searchNum ==11:
-    #     trainAttributes = np.concatenate([trainAttributes, stdAtt, minVal, maxVal], axis=1)    
+    #     trainAttributes = np.concatenate([trainAttributes, stdAtt, minVal, maxVal], axis=1)
     # elif searchNum ==12:
     #     trainAttributes = np.concatenate([trainAttributes, quantilPerAtt], axis=1)
     # elif searchNum ==13:
@@ -271,26 +271,26 @@ def genenet_attribute_feature(allx,tfNum,searchNum):
     # elif searchNum ==14:
     #     trainAttributes = np.concatenate([trainAttributes, minVal, maxVal, quantilPerAtt], axis=1)
     # elif searchNum ==15:
-    #     trainAttributes = np.concatenate([trainAttributes, stdAtt, minVal, maxVal, quantilPerAtt], axis=1) 
-    
+    #     trainAttributes = np.concatenate([trainAttributes, stdAtt, minVal, maxVal, quantilPerAtt], axis=1)
+
     # New trimmed
     if searchNum ==1:
-        trainAttributes = np.concatenate([trainAttributes, tfAttr], axis=1)    
+        trainAttributes = np.concatenate([trainAttributes, tfAttr], axis=1)
     elif searchNum ==2:
         trainAttributes = np.concatenate([trainAttributes, quantilPerAtt, tfAttr], axis=1)
     elif searchNum ==3:
         trainAttributes = np.concatenate([trainAttributes, minVal, maxVal, quantilPerAtt, tfAttr], axis=1)
     elif searchNum ==4:
-        trainAttributes = trainAttributes   
+        trainAttributes = trainAttributes
     elif searchNum ==5:
         trainAttributes = np.concatenate([trainAttributes, quantilPerAtt], axis=1)
     elif searchNum ==6:
         trainAttributes = np.concatenate([trainAttributes, minVal, maxVal, quantilPerAtt], axis=1)
-    
+
     # trainAttributes = np.concatenate([trainAttributes, stdAtt, quantilPerAtt, quantilValAtt, tfAttr], axis=1)
-    
+
     #trainAttributes = np.concatenate([tfAttr], axis=1)
-    
+
     return trainAttributes
 
 # Negative sampling of the data, not restrict on TF
@@ -371,7 +371,7 @@ def sample_neg_TF_motif(net, TF_num=334):
     net_triu = ssp.triu(net, k=1)
     # sample positive links for train/test
     row, col, _ = ssp.find(net_triu)
-    test_pos = (row, col)   
+    test_pos = (row, col)
     # sample negative links for train/test
     neg = ([], [])
     n = net.shape[0]
@@ -428,7 +428,7 @@ def sample_neg_all(net):
     net_triu = ssp.triu(net, k=1)
     # sample positive links for train/test
     row, col, _ = ssp.find(net_triu)
-    test_pos = (row, col)   
+    test_pos = (row, col)
     # sample negative links for train/test
     neg = ([], [])
     n = net.shape[0]
@@ -449,7 +449,7 @@ def sample_neg_all_TF(net,TF_num=333):
     net_triu = ssp.triu(net, k=1)
     # sample positive links for train/test
     row, col, _ = ssp.find(net_triu)
-    test_pos = (row, col)   
+    test_pos = (row, col)
     # sample negative links for train/test
     neg = ([], [])
     n = net.shape[0]
@@ -470,7 +470,7 @@ def sample_neg_all_large(net,maximum_test=100000):
     net_triu = ssp.triu(net, k=1)
     # sample positive links for train/test
     row, col, _ = ssp.find(net_triu)
-    test_pos = (row, col)   
+    test_pos = (row, col)
     # sample negative links for train/test
     neg = ([], [])
     n = net.shape[0]
@@ -546,7 +546,7 @@ def links2subgraphsTranSVM(Atrain, Atest, train_pos, train_neg, test_pos, test_n
     return train_graphs, test_graphs, train_labels, test_labels
 
 
-# Extract subgraph from links for network motifs 
+# Extract subgraph from links for network motifs
 def extractLinks2subgraphs_motif(A, train_pos, train_neg, h=1, max_nodes_per_hop=None, node_information=None, tfNum=334):
     # automatically select h from {1, 2}
     if h == 'auto': # TODO
@@ -574,7 +574,7 @@ def extractLinks2subgraphs_motif(A, train_pos, train_neg, h=1, max_nodes_per_hop
             max_n_label['value'] = max(max(n_labels), max_n_label['value'])
             g_list.append(GNNGraph(g, g_label, n_labels, n_features))
         return g_list
-    
+
     def helperMotif(A, links, g_label, node_information):
         label_list = []
         feature_list = []
@@ -592,7 +592,7 @@ def extractLinks2subgraphs_motif(A, train_pos, train_neg, h=1, max_nodes_per_hop
     pos_graphs_labels,pos_graphs_features = helperMotif(A, train_pos, 1, node_information)
     # neg_graphs_labels = []
     # neg_graphs_features = []
-    neg_graphs_labels,neg_graphs_features = helperMotif(A, train_neg, 0, node_information)    
+    neg_graphs_labels,neg_graphs_features = helperMotif(A, train_neg, 0, node_information)
     print(max_n_label)
     # for key in sorted(motifDictTFTF):
     #     print(str(key)+"\t"+str(motifDictTFTF[key]))
@@ -601,7 +601,7 @@ def extractLinks2subgraphs_motif(A, train_pos, train_neg, h=1, max_nodes_per_hop
     return pos_graphs_labels,pos_graphs_features,neg_graphs_labels,neg_graphs_features, max_n_label['value']
 
 # Original
-# Extract subgraph from links 
+# Extract subgraph from links
 def extractLinks2subgraphs(Atrain, Atest, train_pos, train_neg, test_pos, test_neg, h=1, max_nodes_per_hop=None, train_node_information=None, test_node_information=None):
     # automatically select h from {1, 2}
     if h == 'auto': # TODO
@@ -635,7 +635,7 @@ def extractLinks2subgraphs(Atrain, Atest, train_pos, train_neg, test_pos, test_n
     print(max_n_label)
     return train_graphs, test_graphs, max_n_label['value']
 
-# Extract subgraph from links 
+# Extract subgraph from links
 def extractLinks2subgraphsRatio(Atrain, Atest, train_pos, train_neg, test_pos, test_neg, ratio, labelflag, nonzerolabel_ratio, zerolabel_ratio, h=1, max_nodes_per_hop=None, train_node_information=None, test_node_information=None):
     # automatically select h from {1, 2}
     if h == 'auto': # TODO
@@ -682,7 +682,7 @@ def extractLinks2subgraphsSVM(Atrain, Atest, train_pos, train_neg, test_pos, tes
             label_list.append(g_label)
         return g_list, label_list
     print('Extract enclosed subgraph...')
-    train_graphs, train_labels = helper(Atrain, train_pos, 1, train_node_information) 
+    train_graphs, train_labels = helper(Atrain, train_pos, 1, train_node_information)
     train_graphs1, train_labels1 = helper(Atrain, train_neg, 0, train_node_information)
     train_graphs = train_graphs + train_graphs1
     train_labels = train_labels + train_labels1
@@ -715,7 +715,7 @@ def subgraph_extraction_labeling(ind, A, h=1, max_nodes_per_hop=None, node_infor
     # move target nodes to top
     nodes.remove(ind[0])
     nodes.remove(ind[1])
-    nodes = [ind[0], ind[1]] + list(nodes) 
+    nodes = [ind[0], ind[1]] + list(nodes)
     subgraph = A[nodes, :][:, nodes]
     # apply node-labeling
     labels = node_label(subgraph)
@@ -752,7 +752,7 @@ def subgraph_extraction_labeling_ratio(ind, A, ratio, labelflag, nonzerolabel_ra
     # move target nodes to top
     nodes.remove(ind[0])
     nodes.remove(ind[1])
-    nodes = [ind[0], ind[1]] + list(nodes) 
+    nodes = [ind[0], ind[1]] + list(nodes)
     subgraph = A[nodes, :][:, nodes]
     # apply node-labeling
     labels = node_label(subgraph)
@@ -760,10 +760,10 @@ def subgraph_extraction_labeling_ratio(ind, A, ratio, labelflag, nonzerolabel_ra
     if labelflag:
         nodesO = np.array(nodes)
         labelnzindex = np.where(labels>1)
-        zSize = math.floor(labelnzindex[0].shape[0]*nonzerolabel_ratio) 
-        permn = np.random.permutation(labelnzindex[0])[:zSize] 
-        permn = np.concatenate(([0,1],permn))      
-        
+        zSize = math.floor(labelnzindex[0].shape[0]*nonzerolabel_ratio)
+        permn = np.random.permutation(labelnzindex[0])[:zSize]
+        permn = np.concatenate(([0,1],permn))
+
         #zero labels
         labelzindex = np.where(labels==0)
         zSize = math.floor(labelzindex[0].shape[0]*zerolabel_ratio)
@@ -772,7 +772,7 @@ def subgraph_extraction_labeling_ratio(ind, A, ratio, labelflag, nonzerolabel_ra
         nodes = nodesO[index]
         labels = labels[index]
         subgraph = A[nodes, :][:, nodes]
-        
+
     # get node features
     features = None
     if node_information is not None:
@@ -827,7 +827,7 @@ def node_label(subgraph):
     labels[labels<-1e6] = 0  # set -inf labels to 0
     return labels
 
-    
+
 def generate_node2vec_embeddings(A, emd_size=128, negative_injection=False, train_neg=None):
     if negative_injection:
         row, col = train_neg
@@ -839,8 +839,8 @@ def generate_node2vec_embeddings(A, emd_size=128, negative_injection=False, trai
     G.preprocess_transition_probs()
     walks = G.simulate_walks(num_walks=10, walk_length=80)
     walks = [list(map(str, walk)) for walk in walks]
-    model = Word2Vec(walks, size=emd_size, window=10, min_count=0, sg=1, 
-            workers=8, iter=1)
+    model = Word2Vec(walks, vector_size=emd_size, window=10, min_count=0, sg=1,
+            workers=8, epochs=1)
     wv = model.wv
     embeddings = np.zeros([A.shape[0], emd_size], dtype='float32')
     sum_embeddings = 0
@@ -862,8 +862,8 @@ def AA(A, test_pos, test_neg):
     A_[np.isinf(A_)] = 0
     sim = A.dot(A_)
     return CalcAUC(sim, test_pos, test_neg)
-    
-        
+
+
 def CN(A, test_pos, test_neg):
     # Common Neighbor score
     sim = A.dot(A)
@@ -878,4 +878,3 @@ def CalcAUC(sim, test_pos, test_neg):
     fpr, tpr, _ = metrics.roc_curve(labels, scores, pos_label=1)
     auc = metrics.auc(fpr, tpr)
     return auc
-

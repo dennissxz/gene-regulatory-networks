@@ -53,7 +53,7 @@ def read_feature_file_sparse(filename, sample_size, feature_size):
                     data_count += 1
             count += 1
     f.close()
-    feature = scipy.sparse.csr_matrix((data, (samplelist,featurelist)), shape=(sample_size,feature_size))   
+    feature = scipy.sparse.csr_matrix((data, (samplelist,featurelist)), shape=(sample_size,feature_size))
     return feature
 
 # Load gold standard edges into sparse matrix
@@ -187,13 +187,13 @@ def pearsonMatrix(data, threshold=0.8):
     col=[]
     edata=[]
     for i in np.arange(data.shape[1]):
+        if i % 100 == 0: print(f'{100*i/data.shape[1]}%')
         for j in np.arange(data.shape[1]):
             corr, _ = pearsonr(data[:,i], data[:,j])
             if abs(corr) >= threshold:
                 row.append(i)
                 col.append(j)
                 edata.append(1.0)
-    
     row = np.asarray(row)
     col = np.asarray(col)
     edata = np.asarray(edata)
@@ -201,16 +201,17 @@ def pearsonMatrix(data, threshold=0.8):
     mtx = scipy.sparse.csc_matrix((edata, (row, col)), shape=(data.shape[1], data.shape[1]))
     return mtx
 
-# calculate Mutual Information of gene expression 
+# calculate Mutual Information of gene expression
 def mutualMatrix(data, thresholdfold=3, bin=100):
     row=[]
     col=[]
     edata=[]
     total = []
     for i in np.arange(data.shape[1]):
+        if i % 100 == 0: print(f'{100*i/data.shape[1]}%')
         for j in np.arange(data.shape[1]):
             total.append(calc_MI(data[:,i], data[:,j], bin))
-    
+
     total = np.asarray(total)
     threshold = np.mean(total)+thresholdfold*np.std(total)
 
@@ -220,7 +221,7 @@ def mutualMatrix(data, thresholdfold=3, bin=100):
                 row.append(i)
                 col.append(j)
                 edata.append(1.0)
-    
+
     row = np.asarray(row)
     col = np.asarray(col)
     edata = np.asarray(edata)
@@ -239,12 +240,13 @@ def randomMatrix(data, threshold=0.003):
     col=[]
     edata=[]
     for i in np.arange(data.shape[1]):
+        if i % 100 == 0: print(f'{100*i/data.shape[1]}%')
         for j in np.arange(data.shape[1]):
             if np.random.random_sample() <= threshold:
                 row.append(i)
                 col.append(j)
                 edata.append(1.0)
-    
+
     row = np.asarray(row)
     col = np.asarray(col)
     edata = np.asarray(edata)
@@ -255,32 +257,44 @@ def randomMatrix(data, threshold=0.003):
 # Setting of Dream dataset size
 rowDict={}
 colDict={}
+# feature size
 rowDict['1']=805
+rowDict['2']=160
 rowDict['3']=805
 rowDict['4']=536
+
+# sample size, number of genes
 colDict['1']=1643
+colDict['2']=2810
 colDict['3']=4511
 colDict['4']=5950
 
 # Can be changed to dream3 and dream4
 datasetname=args.dream_num
 
-feature_filename = "/home/wangjue/biodata/DREAM5_network_inference_challenge/Network"+datasetname+"/input_data/expression_data.tsv"
-edge_filename    = "/home/wangjue/biodata/DREAM5_network_inference_challenge/Network"+datasetname+"/gold_standard/GoldStandard.tsv"
-
-# output
-if args.outnetworkTag:
-    graphcsc = read_edge_file_csc(edge_filename, sample_size=args.sample_size)
-    allx = read_feature_file_sparse(feature_filename, sample_size=args.sample_size, feature_size=args.feature_size)
-
-    pickle.dump(allx, open( "ind.dream"+datasetname+".allx", "wb" ) )
-    pickle.dump(graphcsc, open( "ind.dream"+datasetname+".csc", "wb" ) )
+feature_filename = "/home/gala/Documents/GRGNN-master/data/dream/data"+datasetname+"/input_data/expression_data.tsv"
+edge_filename    = "/home/gala/Documents/GRGNN-master/data/dream/data"+datasetname+"/gold_standard/GoldStandard.txt"
 
 sample_size=4511
 if args.dream_num == '3':
     sample_size=4511
+    feature_size=805
 elif args.dream_num == '4':
     sample_size=5950
+    feature_size=536
+elif args.dream_num == '2':
+    sample_size=2810
+    feature_size=160
+
+
+# output
+if args.outnetworkTag:
+    graphcsc = read_edge_file_csc(edge_filename, sample_size)
+    allx = read_feature_file_sparse(feature_filename, sample_size, feature_size)
+
+    pickle.dump(allx, open( "ind.dream"+datasetname+".allx", "wb" ) )
+    pickle.dump(graphcsc, open( "ind.dream"+datasetname+".csc", "wb" ) )
+
 
 # output split
 if args.outnetworkSplitTag:
@@ -293,10 +307,14 @@ if args.outnetworkSplitTag:
     pickle.dump(graphcsc12, open( "../data/dream/ind.data"+datasetname+"_12.csc", "wb" ) )
 
 # data as the correlation
+
 if args.outPCTag or args.outMITag or args.outRMTag:
-    rownum = rowDict[datasetname]    
+
+
+    rownum = rowDict[datasetname]
     colnum = colDict[datasetname]
     data = np.zeros((rownum,colnum))
+
 
     count = -1
     with open(feature_filename) as f:
@@ -312,8 +330,11 @@ if args.outPCTag or args.outMITag or args.outRMTag:
             count = count + 1
         f.close()
 
+
+
 # Calculate Pearson's Correlation coeficient
 if args.outPCTag:
+
     pmatrix = pearsonMatrix(data, args.pearson_net)
     np.save('../data/dream/data'+datasetname+'_pmatrix_'+str(args.pearson_net)+'.npy', pmatrix)
 
@@ -323,6 +344,9 @@ if args.outMITag:
     np.save('../data/dream/data'+datasetname+'_mmatrix_'+str(args.mutual_net)+'.npy', mmatrix)
 
 # Calculate a random network based on
-if args.outRMTag: 
+if args.outRMTag:
     rmatrix = randomMatrix(data, args.random_net)
     np.save('../data/dream/data'+datasetname+'_rmatrix_'+str(args.random_net)+'.npy', rmatrix)
+
+
+# python Preprocessing_DREAM5.py --dream-num 2 --outnetworkTag --outPCTag --outMITag --outRMTag
